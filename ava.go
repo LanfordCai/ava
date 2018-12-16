@@ -49,7 +49,3 @@ func (addr *Address) IsValid() bool {
 	}
 	return false
 }
-
-func (addr *Address) IsContractAddress() bool {
-	return true
-}
