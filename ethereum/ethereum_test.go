@@ -26,8 +26,21 @@ func TestIsValidAddress(t *testing.T) {
 		"0x0F53Ec6bbd2B6712c07d8880E5C8f08753d0d5D5",
 	}
 
+	var invalidAddresses = []string{
+		"0x001d3F1ef827552Ae1114027BD3ECF1F086bA0F9",
+		"0xfB6916095ca1df60bB79Ce92cE3Ea74C37c5d359",
+		"0x5aAeb6053F3E94C9b9A09f33669435E7ef1BeAed",
+		"0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6Fb",
+		"0xd1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb",
+		"",
+	}
+
 	for _, a := range validAddresses {
 		assert.Equal(t, true, IsValidAddress(a))
+	}
+
+	for _, a := range invalidAddresses {
+		assert.Equal(t, false, IsValidAddress(a))
 	}
 }
 
