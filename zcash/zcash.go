@@ -1,35 +1,30 @@
 package zcash
 
 import (
-	"github.com/btcsuite/btcutil/base58"
+	"github.com/LanfordCai/ava/bitcoinlike"
 )
 
-// IsValidAddress ...
-// SEE: https://github.com/zcash/zcash/issues/2010
-func IsValidAddress(address string, isTestnet bool) bool {
-	return IsP2PKH(address, isTestnet) || IsP2SH(address, isTestnet)
+// Validator - Method receiver, used to validate zcash transparent addresses
+type Validator struct {
+	bitcoinlike.Validator
 }
 
-// IsP2PKH ...
-func IsP2PKH(address string, isTestnet bool) bool {
-	decoded, version, err := base58.CheckDecode(address)
-	if err != nil {
-		return false
+// New - Create a new Zcash address validator
+func New(types []string) (*Validator, error) {
+	v := bitcoinlike.Validator{
+		ChainName:           "Zcash",
+		MainnetP2PKHAddrVer: []byte{28, 184},
+		MainnetP2SHAddrVer:  []byte{28, 189},
+		TestnetP2PKHAddrVer: []byte{29, 37},
+		TestnetP2SHAddrVer:  []byte{28, 186},
+		AcceptableTypes:     types,
+		SupportedTypes:      []string{"P2PKH", "P2SH"},
 	}
-	if isTestnet {
-		return version == 29 && decoded[0] == 37
-	}
-	return version == 28 && decoded[0] == 184
-}
 
-// IsP2SH ...
-func IsP2SH(address string, isTestnet bool) bool {
-	decoded, version, err := base58.CheckDecode(address)
+	err := v.CheckTypes(types)
 	if err != nil {
-		return false
+		return nil, err
 	}
-	if isTestnet {
-		return version == 28 && decoded[0] == 186
-	}
-	return version == 28 && decoded[0] == 189
+
+	return &Validator{v}, nil
 }

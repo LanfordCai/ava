@@ -1,22 +1,22 @@
-package dogecoin
+package litecoin
 
 import (
 	"github.com/LanfordCai/ava/bitcoinlike"
 )
 
-// Validator - Method receiver, used to validate dogecoin addresses
+// Validator - Method receiver, used to validate litecoin addresses
 type Validator struct {
 	bitcoinlike.Validator
 }
 
-// New - Create a new Dogecoin address validator
+// New - Create a new LitecoinValidator
 func New(types []string) (*Validator, error) {
 	v := bitcoinlike.Validator{
-		ChainName:           "Dogecoin",
-		MainnetP2PKHAddrVer: []byte{30},
-		MainnetP2SHAddrVer:  []byte{22},
-		TestnetP2PKHAddrVer: []byte{113},
-		TestnetP2SHAddrVer:  []byte{196},
+		ChainName:           "Litecoin",
+		MainnetP2PKHAddrVer: []byte{48},
+		MainnetP2SHAddrVer:  []byte{50},
+		TestnetP2PKHAddrVer: []byte{111},
+		TestnetP2SHAddrVer:  []byte{58},
 		AcceptableTypes:     types,
 		SupportedTypes:      []string{"P2PKH", "P2SH"},
 	}

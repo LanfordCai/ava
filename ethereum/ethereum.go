@@ -11,14 +11,22 @@ import (
 	"github.com/ethereum/go-ethereum/crypto/sha3"
 )
 
-// IsValidAddress ...
-func IsValidAddress(address string) bool {
+// Validator - Ethereum address validator
+type Validator struct{}
+
+// New - Create a Ethereum address validator
+func New() *Validator {
+	return &Validator{}
+}
+
+// IsValidAddress - Check an Ethereum address is valid or not
+func (e *Validator) IsValidAddress(address string, isTestnet bool) bool {
 	if isValidNonChecksumAddress(address) {
 		noPrefixAddr := address[2:]
 		if (strings.ToUpper(noPrefixAddr) == noPrefixAddr) || (strings.ToLower(noPrefixAddr) == noPrefixAddr) {
 			return true
 		}
-		checksumAddress, err := ToChecksumAddress(address)
+		checksumAddress, err := e.ToChecksumAddress(address)
 		if err != nil || checksumAddress != address {
 			return false
 		}
@@ -27,8 +35,8 @@ func IsValidAddress(address string) bool {
 	return false
 }
 
-// ToChecksumAddress ...
-func ToChecksumAddress(address string) (string, error) {
+// ToChecksumAddress - Convert an Ethereum address to address with checksum
+func (e *Validator) ToChecksumAddress(address string) (string, error) {
 	if !isValidNonChecksumAddress(address) {
 		return "", errors.New("Invalid address")
 	}

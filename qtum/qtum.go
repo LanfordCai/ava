@@ -1,35 +1,30 @@
 package qtum
 
 import (
-	"github.com/btcsuite/btcutil/base58"
+	"github.com/LanfordCai/ava/bitcoinlike"
 )
 
-// IsValidAddress ...
-// SEE: https://github.com/qtumproject/qtumcore-lib/blob/master/lib/networks.js
-func IsValidAddress(address string, isTestnet bool) bool {
-	return IsP2PKH(address, isTestnet) || IsP2SH(address, isTestnet)
+// Validator - Method receiver, used to validate qtum addresses
+type Validator struct {
+	bitcoinlike.Validator
 }
 
-// IsP2PKH ...
-func IsP2PKH(address string, isTestnet bool) bool {
-	_, version, err := base58.CheckDecode(address)
-	if err != nil {
-		return false
+// New - Create a new Qtum address validator
+func New(types []string) (*Validator, error) {
+	v := bitcoinlike.Validator{
+		ChainName:           "Qtum",
+		MainnetP2PKHAddrVer: []byte{58},
+		MainnetP2SHAddrVer:  []byte{50},
+		TestnetP2PKHAddrVer: []byte{120},
+		TestnetP2SHAddrVer:  []byte{110},
+		AcceptableTypes:     types,
+		SupportedTypes:      []string{"P2PKH", "P2SH"},
 	}
-	if isTestnet {
-		return version == 120
-	}
-	return version == 58
-}
 
-// IsP2SH ...
-func IsP2SH(address string, isTestnet bool) bool {
-	_, version, err := base58.CheckDecode(address)
+	err := v.CheckTypes(types)
 	if err != nil {
-		return false
+		return nil, err
 	}
-	if isTestnet {
-		return version == 110
-	}
-	return version == 50
+
+	return &Validator{v}, nil
 }

@@ -7,6 +7,7 @@ import (
 )
 
 func TestIsValidAddress(t *testing.T) {
+	validator := New()
 	var validAddresses = []string{
 		"0x001d3f1ef827552ae1114027bd3ecf1f086ba0f9",
 		"0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359",
@@ -36,11 +37,11 @@ func TestIsValidAddress(t *testing.T) {
 	}
 
 	for _, a := range validAddresses {
-		assert.Equal(t, true, IsValidAddress(a))
+		assert.Equal(t, true, validator.IsValidAddress(a, false))
 	}
 
 	for _, a := range invalidAddresses {
-		assert.Equal(t, false, IsValidAddress(a))
+		assert.Equal(t, false, validator.IsValidAddress(a, false))
 	}
 }
 
@@ -56,8 +57,10 @@ func TestToChecksumAddress(t *testing.T) {
 		{"0xd1220a0cf47c7b9be7a2e6ba89f429762e7b9adb", "0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb"},
 	}
 
+	validator := New()
+
 	for _, p := range checkSumAddressPairs {
-		checksumed, err := ToChecksumAddress(p.address)
+		checksumed, err := validator.ToChecksumAddress(p.address)
 		if err != nil {
 			t.Logf("Failed for %s", p.address)
 		} else {
