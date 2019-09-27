@@ -20,8 +20,8 @@ func New() *Validator {
 	return &Validator{}
 }
 
-// IsValidAddress - Check an Ethereum address is valid or not
-func (e *Validator) IsValidAddress(address string, isTestnet bool) common.ValidationResult {
+// ValidateAddress - Check an Ethereum address is valid or not
+func (e *Validator) ValidateAddress(address string, isTestnet bool) common.ValidationResult {
 	if isValidNonChecksumAddress(address) {
 		noPrefixAddr := address[2:]
 		if (strings.ToUpper(noPrefixAddr) == noPrefixAddr) || (strings.ToLower(noPrefixAddr) == noPrefixAddr) {

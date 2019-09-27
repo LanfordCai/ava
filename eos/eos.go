@@ -14,8 +14,8 @@ package eos
 // 	return &Validator{allowContract: allowContract}
 // }
 
-// // IsValidAddress ...
-// func (e *Validator) IsValidAddress(address string, isTestnet bool) bool {
+// // ValidateAddress ...
+// func (e *Validator) ValidateAddress(address string, isTestnet bool) bool {
 // 	if withRightAddressFormat(address) && isRegistered(address) {
 // 		if !e.allowContract && isContract(address) {
 // 			return false

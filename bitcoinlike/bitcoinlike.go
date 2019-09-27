@@ -29,9 +29,9 @@ type Validator struct {
 	SupportedTypes      []string
 }
 
-// IsValidAddress - Validate the given address and network type
+// ValidateAddress - Validate the given address and network type
 // SEE: https://en.bitcoin.it/wiki/List_of_address_prefixes
-func (b *Validator) IsValidAddress(address string, isTestnet bool) common.ValidationResult {
+func (b *Validator) ValidateAddress(address string, isTestnet bool) common.ValidationResult {
 	if b.isP2PKH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2PKH") {
 		return common.NewValidationResult(true, "P2PKH")
 	}

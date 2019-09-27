@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestIsValidAddress(t *testing.T) {
+func TestValidateAddress(t *testing.T) {
 	validator := New()
 	var validAddresses = []string{
 		"0x001d3f1ef827552ae1114027bd3ecf1f086ba0f9",
@@ -37,12 +37,12 @@ func TestIsValidAddress(t *testing.T) {
 	}
 
 	for _, a := range validAddresses {
-		result := validator.IsValidAddress(a, false)
+		result := validator.ValidateAddress(a, false)
 		assert.Equal(t, true, result.IsValid)
 	}
 
 	for _, a := range invalidAddresses {
-		result := validator.IsValidAddress(a, false)
+		result := validator.ValidateAddress(a, false)
 		assert.Equal(t, false, result.IsValid)
 	}
 }

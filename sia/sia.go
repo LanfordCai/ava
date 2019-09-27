@@ -15,8 +15,8 @@ func New() *Validator {
 	return &Validator{}
 }
 
-// IsValidAddress - Check a Sia address is valid or not
-func (s *Validator) IsValidAddress(address string, isTestnet bool) common.ValidationResult {
+// ValidateAddress - Check a Sia address is valid or not
+func (s *Validator) ValidateAddress(address string, isTestnet bool) common.ValidationResult {
 	unlockhashWithChecksum, err := hex.DecodeString(address)
 	if err != nil || len(unlockhashWithChecksum) != 38 {
 		return common.NewValidationResult(false, "")

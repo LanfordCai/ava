@@ -36,7 +36,7 @@ var cases = map[string][]string{
 	},
 }
 
-func TestIsValidAddress(t *testing.T) {
+func TestValidateAddress(t *testing.T) {
 	validator, _ := New([]string{"P2WPKH", "P2WSH"})
 	validatorP2WPKH, _ := New([]string{"P2WPKH"})
 	validatorP2WSH, _ := New([]string{"P2WSH"})
@@ -73,7 +73,7 @@ func TestIsValidAddress(t *testing.T) {
 
 func validateAddresses(t *testing.T, validator *Validator, addresses []string, isTestnet bool, expect bool) {
 	for _, a := range addresses {
-		result := validator.IsValidAddress(a, isTestnet)
+		result := validator.ValidateAddress(a, isTestnet)
 		assert.Equal(t, expect, result.IsValid)
 	}
 }

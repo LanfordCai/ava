@@ -21,15 +21,15 @@ var invalidAddresses = []string{
 	"",
 }
 
-func TestIsValidAddress(t *testing.T) {
+func TestValidateAddress(t *testing.T) {
 	validator := New()
 	for _, a := range validAddresses {
-		result := validator.IsValidAddress(a, false)
+		result := validator.ValidateAddress(a, false)
 		assert.Equal(t, true, result.IsValid)
 	}
 
 	for _, a := range invalidAddresses {
-		result := validator.IsValidAddress(a, false)
+		result := validator.ValidateAddress(a, false)
 		assert.Equal(t, false, result.IsValid)
 	}
 }

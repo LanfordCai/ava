@@ -22,15 +22,15 @@ package eos
 // 	"",
 // }
 
-// func TestIsValidAddress(t *testing.T) {
+// func TestValidateAddress(t *testing.T) {
 // 	validator := New(false)
 // 	for _, a := range validAddresses {
-// 		isValid := validator.IsValidAddress(a, false)
+// 		isValid := validator.ValidateAddress(a, false)
 // 		assert.Equal(t, true, isValid)
 // 	}
 
 // 	for _, a := range invalidAddresses {
-// 		isValid := validator.IsValidAddress(a, false)
+// 		isValid := validator.ValidateAddress(a, false)
 // 		assert.Equal(t, false, isValid)
 // 	}
 // }
