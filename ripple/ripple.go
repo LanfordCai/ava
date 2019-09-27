@@ -1,6 +1,6 @@
 package ripple
 
-import "github.com/LanfordCai/btcutil/base58"
+import "github.com/LanfordCai/rbase58"
 
 // Validator - Ripple address validator
 type Validator struct{}
@@ -12,7 +12,7 @@ func New() *Validator {
 
 // IsValidAddress - Check a Ripple address is valid or not
 func (r *Validator) IsValidAddress(address string, isTestnet bool) bool {
-	_, version, err := base58.CheckDecode(address)
+	_, version, err := rbase58.CheckDecode(address)
 	if err != nil {
 		return false
 	}
