@@ -23,5 +23,5 @@ func TestNew(t *testing.T) {
 	assert.EqualError(t, err, unsupportedErrMsg)
 
 	err = v.CheckTypes([]string{})
-	assert.EqualError(t, err, ErrEmptyAcceptableTypes.Error())
+	assert.EqualError(t, err, ErrEmptyEnabledTypes.Error())
 }

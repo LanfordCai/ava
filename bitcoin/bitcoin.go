@@ -17,7 +17,7 @@ func New(types []string) (*Validator, error) {
 		MainnetP2SHAddrVer:  []byte{5},
 		TestnetP2PKHAddrVer: []byte{111},
 		TestnetP2SHAddrVer:  []byte{196},
-		AcceptableTypes:     types,
+		EnabledTypes:        types,
 		SupportedTypes:      []string{"P2PKH", "P2SH"},
 	}
 

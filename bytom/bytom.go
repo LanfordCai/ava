@@ -15,7 +15,7 @@ func New(types []string) (*Validator, error) {
 		ChainName:        "Bytom",
 		MainnetBech32HRP: "bm",
 		TestnetBech32HRP: "tm",
-		AcceptableTypes:  types,
+		EnabledTypes:     types,
 		SupportedTypes:   []string{"P2WPKH", "P2WSH"},
 	}
 
