@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/LanfordCai/ava/common"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 )
@@ -14,7 +15,7 @@ func TestNew(t *testing.T) {
 	}
 
 	msg := fmt.Sprintf("Supported types are: %+q", v.SupportedTypes)
-	unsupportedErrMsg := errors.WithMessage(ErrUnsupportedTypes, msg).Error()
+	unsupportedErrMsg := errors.WithMessage(common.ErrUnsupportedTypes, msg).Error()
 
 	err := v.CheckTypes([]string{"P2PKH", "P2SH"})
 	assert.Nil(t, err)
@@ -23,5 +24,5 @@ func TestNew(t *testing.T) {
 	assert.EqualError(t, err, unsupportedErrMsg)
 
 	err = v.CheckTypes([]string{})
-	assert.EqualError(t, err, ErrEmptyEnabledTypes.Error())
+	assert.EqualError(t, err, common.ErrEmptyEnabledTypes.Error())
 }

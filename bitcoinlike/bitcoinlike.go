@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
+	"github.com/LanfordCai/ava/common"
 	"github.com/LanfordCai/ava/utils"
 	"github.com/btcsuite/btcutil/base58"
 	"github.com/btcsuite/btcutil/bech32"
@@ -30,36 +31,36 @@ type Validator struct {
 
 // IsValidAddress - Validate the given address and network type
 // SEE: https://en.bitcoin.it/wiki/List_of_address_prefixes
-func (b *Validator) IsValidAddress(address string, isTestnet bool) bool {
+func (b *Validator) IsValidAddress(address string, isTestnet bool) common.ValidationResult {
 	if b.isP2PKH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2PKH") {
-		return true
+		return common.NewValidationResult(true, "P2PKH")
 	}
 
 	if b.isP2SH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2SH") {
-		return true
+		return common.NewValidationResult(true, "P2SH")
 	}
 
 	if b.isP2WPKH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2WPKH") {
-		return true
+		return common.NewValidationResult(true, "P2WPKH")
 	}
 
 	if b.isP2WSH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2WSH") {
-		return true
+		return common.NewValidationResult(true, "P2WSH")
 	}
 
-	return false
+	return common.NewValidationResult(false, "")
 }
 
 // CheckTypes - Check address type has been supported or not
 func (b *Validator) CheckTypes(types []string) error {
 	if len(types) < 1 {
-		return ErrEmptyEnabledTypes
+		return common.ErrEmptyEnabledTypes
 	}
 
 	for _, t := range types {
 		if !utils.Contains(b.SupportedTypes, t) {
 			errMsg := fmt.Sprintf("Supported types are: %+q", b.SupportedTypes)
-			return errors.Wrap(ErrUnsupportedTypes, errMsg)
+			return errors.Wrap(common.ErrUnsupportedTypes, errMsg)
 		}
 	}
 

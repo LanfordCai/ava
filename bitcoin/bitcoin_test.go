@@ -74,7 +74,7 @@ func TestIsValidAddress(t *testing.T) {
 
 func validateAddresses(t *testing.T, validator *Validator, addresses []string, isTestnet bool, expect bool) {
 	for _, a := range addresses {
-		isValid := validator.IsValidAddress(a, isTestnet)
-		assert.Equal(t, expect, isValid)
+		result := validator.IsValidAddress(a, isTestnet)
+		assert.Equal(t, expect, result.IsValid)
 	}
 }

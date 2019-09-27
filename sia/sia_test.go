@@ -27,12 +27,12 @@ var invalidAddresses = []string{
 func TestIsValidAddress(t *testing.T) {
 	validator := New()
 	for _, a := range validAddresses {
-		isValid := validator.IsValidAddress(a, false)
-		assert.Equal(t, true, isValid)
+		result := validator.IsValidAddress(a, false)
+		assert.Equal(t, true, result.IsValid)
 	}
 
 	for _, a := range invalidAddresses {
-		isValid := validator.IsValidAddress(a, false)
-		assert.Equal(t, false, isValid)
+		result := validator.IsValidAddress(a, false)
+		assert.Equal(t, false, result.IsValid)
 	}
 }

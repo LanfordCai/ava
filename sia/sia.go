@@ -3,6 +3,7 @@ package sia
 import (
 	"encoding/hex"
 
+	"github.com/LanfordCai/ava/common"
 	"golang.org/x/crypto/blake2b"
 )
 
@@ -15,10 +16,10 @@ func New() *Validator {
 }
 
 // IsValidAddress - Check a Sia address is valid or not
-func (s *Validator) IsValidAddress(address string, isTestnet bool) bool {
+func (s *Validator) IsValidAddress(address string, isTestnet bool) common.ValidationResult {
 	unlockhashWithChecksum, err := hex.DecodeString(address)
 	if err != nil || len(unlockhashWithChecksum) != 38 {
-		return false
+		return common.NewValidationResult(false, "")
 	}
 	unlockhash := unlockhashWithChecksum[0:32]
 	checksum256 := blake2b.Sum256(unlockhash)
@@ -28,5 +29,5 @@ func (s *Validator) IsValidAddress(address string, isTestnet bool) bool {
 
 	var checksum [6]byte
 	copy(checksum[:], unlockhashWithChecksum[32:])
-	return checksum == validChecksum
+	return common.NewValidationResult(checksum == validChecksum, "")
 }
