@@ -32,23 +32,25 @@ type Validator struct {
 // ValidateAddress - Validate the given address and network type
 // SEE: https://en.bitcoin.it/wiki/List_of_address_prefixes
 func (b *Validator) ValidateAddress(address string, isTestnet bool) common.ValidationResult {
-	if b.isP2PKH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2PKH") {
-		return common.NewValidationResult(true, "P2PKH")
+	var addrType string
+	switch {
+	case b.isP2PKH(address, isTestnet):
+		addrType = "P2PKH"
+	case b.isP2SH(address, isTestnet):
+		addrType = "P2SH"
+	case b.isP2WPKH(address, isTestnet):
+		addrType = "P2WPKH"
+	case b.isP2WSH(address, isTestnet):
+		addrType = "P2WSH"
+	default:
+		addrType = "Unknown"
 	}
 
-	if b.isP2SH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2SH") {
-		return common.NewValidationResult(true, "P2SH")
+	valid := false
+	if addrType != "Unknown" && utils.Contains(b.EnabledTypes, addrType) {
+		valid = true
 	}
-
-	if b.isP2WPKH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2WPKH") {
-		return common.NewValidationResult(true, "P2WPKH")
-	}
-
-	if b.isP2WSH(address, isTestnet) && utils.Contains(b.EnabledTypes, "P2WSH") {
-		return common.NewValidationResult(true, "P2WSH")
-	}
-
-	return common.NewValidationResult(false, "")
+	return common.NewValidationResult(valid, addrType)
 }
 
 // CheckTypes - Check address type has been supported or not
