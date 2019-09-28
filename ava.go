@@ -56,7 +56,7 @@ func NewValidator(chainName string) (Validator, error) {
 
 func getEnalbedTypes(chainName string) []string {
 	chainName = strings.ToUpper(chainName)
-	key := fmt.Sprintf("%s_ENABLED_ADDR_TYPES", chainName)
+	key := fmt.Sprintf("AVA_%s_ENABLED_ADDR_TYPES", chainName)
 	typesStr := os.Getenv(key)
 	if len(typesStr) == 0 {
 		return []string{}

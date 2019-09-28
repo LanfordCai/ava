@@ -1,6 +1,6 @@
 # ava
 
-Crypto-Addresses Validator
+Cryptocurrency Addresses Validator
 
 ### Installation
 

@@ -9,7 +9,7 @@ import (
 )
 
 func TestNewValidator(t *testing.T) {
-	os.Setenv("BITCOIN_ENABLED_ADDR_TYPES", "P2PKH")
+	os.Setenv("AVA_BITCOIN_ENABLED_ADDR_TYPES", "P2PKH")
 
 	v, err := NewValidator("Bitcoin")
 	assert.Nil(t, err)
