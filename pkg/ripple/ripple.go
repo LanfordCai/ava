@@ -1,7 +1,7 @@
 package ripple
 
 import (
-	"github.com/LanfordCai/ava/common"
+	"github.com/LanfordCai/ava/internal/common"
 	"github.com/LanfordCai/rbase58"
 )
 

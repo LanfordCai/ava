@@ -1,7 +1,7 @@
 package zcash
 
 import (
-	"github.com/LanfordCai/ava/bitcoinlike"
+	"github.com/LanfordCai/ava/internal/bitcoinlike"
 )
 
 // Validator - Method receiver, used to validate zcash transparent addresses

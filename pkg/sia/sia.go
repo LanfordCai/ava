@@ -3,7 +3,7 @@ package sia
 import (
 	"encoding/hex"
 
-	"github.com/LanfordCai/ava/common"
+	"github.com/LanfordCai/ava/internal/common"
 	"golang.org/x/crypto/blake2b"
 )
 

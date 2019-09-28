@@ -8,7 +8,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/LanfordCai/ava/common"
+	"github.com/LanfordCai/ava/internal/common"
 	"github.com/ethereum/go-ethereum/crypto/sha3"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/LanfordCai/ava/common"
+	"github.com/LanfordCai/ava/internal/common"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 )

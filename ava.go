@@ -5,16 +5,16 @@ import (
 	"os"
 	"strings"
 
-	"github.com/LanfordCai/ava/bitcoin"
-	"github.com/LanfordCai/ava/bytom"
-	"github.com/LanfordCai/ava/common"
-	"github.com/LanfordCai/ava/dogecoin"
-	"github.com/LanfordCai/ava/ethereum"
-	"github.com/LanfordCai/ava/litecoin"
-	"github.com/LanfordCai/ava/neo"
-	"github.com/LanfordCai/ava/ripple"
-	"github.com/LanfordCai/ava/sia"
-	"github.com/LanfordCai/ava/zcash"
+	"github.com/LanfordCai/ava/internal/common"
+	"github.com/LanfordCai/ava/pkg/bitcoin"
+	"github.com/LanfordCai/ava/pkg/bytom"
+	"github.com/LanfordCai/ava/pkg/dogecoin"
+	"github.com/LanfordCai/ava/pkg/ethereum"
+	"github.com/LanfordCai/ava/pkg/litecoin"
+	"github.com/LanfordCai/ava/pkg/neo"
+	"github.com/LanfordCai/ava/pkg/ripple"
+	"github.com/LanfordCai/ava/pkg/sia"
+	"github.com/LanfordCai/ava/pkg/zcash"
 )
 
 // Validator - Address validator

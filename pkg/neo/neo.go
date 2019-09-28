@@ -1,7 +1,7 @@
 package neo
 
 import (
-	"github.com/LanfordCai/ava/common"
+	"github.com/LanfordCai/ava/internal/common"
 	"github.com/btcsuite/btcutil/base58"
 )
 

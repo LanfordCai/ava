@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/LanfordCai/ava/common"
-	"github.com/LanfordCai/ava/utils"
+	"github.com/LanfordCai/ava/internal/common"
+	"github.com/LanfordCai/ava/internal/utils"
 	"github.com/btcsuite/btcutil/base58"
 	"github.com/btcsuite/btcutil/bech32"
 	"github.com/pkg/errors"
