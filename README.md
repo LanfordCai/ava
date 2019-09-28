@@ -20,6 +20,14 @@ import "github.com/LanfordCai/ava"
 
 ***Validate a `Bitcoin` address***
 
+At first, setup enabled address type:
+
+```sh
+export AVA_BITCOIN_ENABLED_ADDR_TYPES="P2PKH,P2SH"
+```
+
+And then, write some code:
+
 ```go
 
 package main
@@ -31,17 +39,17 @@ import (
 )
 
 func main() {
-	a := ava.Address{
-		ChainName: "Bitcoin",
-		Address:   "3NJHZpnnk3bFxqVHVS2vUomUBznju6W8D9",
-		IsTestnet: false,
+	validator, err := ava.NewValidator("Bitcoin")
+	if err != nil {
+		panic(err.Error())
 	}
 
-	if a.IsValid() {
-		fmt.Printf("%s is a valid %s address!", a.Address, a.ChainName)
-	} else {
-		fmt.Printf("%s is an invalid %s address!", a.Address, a.ChainName)
-	}
+	address := "19JeUHUvw23fwKeK1zZD4moKyxj1xn4Kxi"
+	isTestnet := false
+	result := validator.ValidateAddress(address, isTestnet)
+
+	fmt.Printf("Address is valid?: %t\n", result.IsValid)
+	fmt.Printf("Extra message: %s\n", result.Msg)
 }
 
 ```
