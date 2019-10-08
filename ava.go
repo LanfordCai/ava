@@ -8,10 +8,12 @@ import (
 	"github.com/LanfordCai/ava/internal/common"
 	"github.com/LanfordCai/ava/pkg/bitcoin"
 	"github.com/LanfordCai/ava/pkg/bytom"
+	"github.com/LanfordCai/ava/pkg/dash"
 	"github.com/LanfordCai/ava/pkg/dogecoin"
 	"github.com/LanfordCai/ava/pkg/ethereum"
 	"github.com/LanfordCai/ava/pkg/litecoin"
 	"github.com/LanfordCai/ava/pkg/neo"
+	"github.com/LanfordCai/ava/pkg/qtum"
 	"github.com/LanfordCai/ava/pkg/ripple"
 	"github.com/LanfordCai/ava/pkg/sia"
 	"github.com/LanfordCai/ava/pkg/zcash"
@@ -26,7 +28,7 @@ type Validator interface {
 func NewValidator(chainName string) (Validator, error) {
 	chainName = strings.ToLower(chainName)
 	switch chainName {
-	case "bitcoin", "bitcoincash":
+	case "bitcoin", "bitcoincash", "bitcoindiamond":
 		types := getEnalbedTypes(chainName)
 		return bitcoin.New(types)
 	case "litecoin":
@@ -43,12 +45,18 @@ func NewValidator(chainName string) (Validator, error) {
 		return zcash.New(types)
 	case "sia", "siacore", "siaclassic":
 		return sia.New(), nil
+	case "qtum":
+		types := getEnalbedTypes(chainName)
+		return qtum.New(types)
 	case "neo":
 		return neo.New(), nil
 	case "ripple":
 		return ripple.New(), nil
 	case "ethereum", "ethereumclassic", "gojoychain", "wanchain", "vechain":
 		return ethereum.New(), nil
+	case "dash":
+		types := getEnalbedTypes(chainName)
+		return dash.New(types)
 	default:
 		return nil, common.ErrUnsupportedChain
 	}
