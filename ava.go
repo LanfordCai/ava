@@ -8,6 +8,7 @@ import (
 	"github.com/LanfordCai/ava/internal/common"
 	"github.com/LanfordCai/ava/internal/utils"
 	"github.com/LanfordCai/ava/pkg/bitcoin"
+	"github.com/LanfordCai/ava/pkg/bitcoingold"
 	"github.com/LanfordCai/ava/pkg/bytom"
 	"github.com/LanfordCai/ava/pkg/dash"
 	"github.com/LanfordCai/ava/pkg/dogecoin"
@@ -30,7 +31,7 @@ type Validator interface {
 func NewValidator(chainName string) (Validator, error) {
 	chainName = strings.ToLower(chainName)
 	switch chainName {
-	case "bitcoin", "bitcoincash", "bitcoindiamond":
+	case "bitcoin", "bitcoincash", "bitcoindiamond", "superbitcoin":
 		types := getEnalbedTypes(chainName)
 		return bitcoin.New(types)
 	case "litecoin":
@@ -63,6 +64,9 @@ func NewValidator(chainName string) (Validator, error) {
 		baseURL := os.Getenv("AVA_EOS_BASE_URL")
 		whitelist := getContractWhiteList(chainName)
 		return eos.New(baseURL, whitelist), nil
+	case "bitcoingold":
+		types := getEnalbedTypes(chainName)
+		return bitcoingold.New(types)
 	default:
 		return nil, common.ErrUnsupportedChain
 	}
