@@ -1,36 +1,54 @@
 package eos
 
-// import (
-// 	"testing"
+import (
+	"os"
+	"testing"
 
-// 	"github.com/stretchr/testify/assert"
-// )
+	"github.com/stretchr/testify/assert"
+)
 
-// var validAddresses = []string{
-// 	"binancecold1",
-// 	"bithumbshiny",
-// 	"bitfinexcw55",
-// 	"wnnqcyubjoeo",
-// 	"big.one",
-// }
+var cases = map[string][]string{
+	"invalidFormat": []string{
+		"007",
+		"abc-abc",
+		"gogo&11",
+		"pxneosincome1",
+		"hUOBIDEPOSIT",
+	},
+	"unregistered": []string{
+		"huo1ideposie",
+		"pxneosincomd",
+	},
+	"normal": []string{
+		"pxneosincome",
+	},
+	"contract": []string{
+		"huobideposit",
+	},
+}
 
-// var invalidAddresses = []string{
-// 	"0inancecold1",
-// 	"abc-decwdsae",
-// 	"binancecold12",
-// 	" ",
-// 	"",
-// }
+func TestValidateAddress(t *testing.T) {
+	baseURL := os.Getenv("AVA_EOS_BASE_URL")
+	validator := New(baseURL, []string{})
+	validatorWithWhitelist := New(baseURL, []string{"huobideposit"})
 
-// func TestValidateAddress(t *testing.T) {
-// 	validator := New(false)
-// 	for _, a := range validAddresses {
-// 		isValid := validator.ValidateAddress(a, false)
-// 		assert.Equal(t, true, isValid)
-// 	}
+	for k, v := range cases {
+		switch k {
+		case "invalidFormat", "unregistered":
+			validateAddress(t, validator, v, false)
+		case "normal":
+			validateAddress(t, validator, v, true)
+		case "contract":
+			validateAddress(t, validator, v, false)
+			validateAddress(t, validatorWithWhitelist, v, true)
+		}
+	}
+}
 
-// 	for _, a := range invalidAddresses {
-// 		isValid := validator.ValidateAddress(a, false)
-// 		assert.Equal(t, false, isValid)
-// 	}
-// }
+func validateAddress(t *testing.T, validator *Validator, addresses []string, expect bool) {
+	t.Helper()
+	for _, a := range addresses {
+		result := validator.ValidateAddress(a, false)
+		assert.Equal(t, expect, result.IsValid)
+	}
+}

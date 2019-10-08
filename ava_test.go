@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNewValidator(t *testing.T) {
+func TestNewValidatorWithEnabledTypes(t *testing.T) {
 	os.Setenv("AVA_BITCOIN_ENABLED_ADDR_TYPES", "P2PKH")
 
 	v, err := NewValidator("Bitcoin")
@@ -18,4 +18,16 @@ func TestNewValidator(t *testing.T) {
 
 	_, err = NewValidator("Testchain")
 	assert.EqualError(t, common.ErrUnsupportedChain, err.Error())
+}
+
+func TestNewValidatorWithContractWhitelist(t *testing.T) {
+	os.Setenv("AVA_EOS_CONTRACT_WHITELIST", "huobideposit")
+
+	v, err := NewValidator("EOS")
+	assert.Nil(t, err)
+	result := v.ValidateAddress("huobideposit", false)
+	assert.Equal(t, true, result.IsValid)
+
+	result = v.ValidateAddress("pxneosincome", false)
+	assert.Equal(t, true, result.IsValid)
 }

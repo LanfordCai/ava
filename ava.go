@@ -6,10 +6,12 @@ import (
 	"strings"
 
 	"github.com/LanfordCai/ava/internal/common"
+	"github.com/LanfordCai/ava/internal/utils"
 	"github.com/LanfordCai/ava/pkg/bitcoin"
 	"github.com/LanfordCai/ava/pkg/bytom"
 	"github.com/LanfordCai/ava/pkg/dash"
 	"github.com/LanfordCai/ava/pkg/dogecoin"
+	"github.com/LanfordCai/ava/pkg/eos"
 	"github.com/LanfordCai/ava/pkg/ethereum"
 	"github.com/LanfordCai/ava/pkg/litecoin"
 	"github.com/LanfordCai/ava/pkg/neo"
@@ -57,6 +59,10 @@ func NewValidator(chainName string) (Validator, error) {
 	case "dash":
 		types := getEnalbedTypes(chainName)
 		return dash.New(types)
+	case "eos":
+		baseURL := os.Getenv("AVA_EOS_BASE_URL")
+		whitelist := getContractWhiteList(chainName)
+		return eos.New(baseURL, whitelist), nil
 	default:
 		return nil, common.ErrUnsupportedChain
 	}
@@ -64,15 +70,12 @@ func NewValidator(chainName string) (Validator, error) {
 
 func getEnalbedTypes(chainName string) []string {
 	chainName = strings.ToUpper(chainName)
-	key := fmt.Sprintf("AVA_%s_ENABLED_ADDR_TYPES", chainName)
-	typesStr := os.Getenv(key)
-	if len(typesStr) == 0 {
-		return []string{}
-	}
-	types := strings.Split(typesStr, ",")
-	for i := 0; i < len(types); i++ {
-		types[i] = strings.Trim(types[i], " ")
-	}
+	typesStr := os.Getenv(fmt.Sprintf("AVA_%s_ENABLED_ADDR_TYPES", chainName))
+	return utils.SplitWithComma(typesStr)
+}
 
-	return types
+func getContractWhiteList(chainName string) []string {
+	chainName = strings.ToUpper(chainName)
+	whitelistStr := os.Getenv(fmt.Sprintf("AVA_%s_CONTRACT_WHITELIST", chainName))
+	return utils.SplitWithComma(whitelistStr)
 }
