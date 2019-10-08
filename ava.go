@@ -7,6 +7,7 @@ import (
 
 	"github.com/LanfordCai/ava/internal/common"
 	"github.com/LanfordCai/ava/internal/utils"
+	"github.com/LanfordCai/ava/pkg/aeternity"
 	"github.com/LanfordCai/ava/pkg/bitcoin"
 	"github.com/LanfordCai/ava/pkg/bitcoingold"
 	"github.com/LanfordCai/ava/pkg/bytom"
@@ -67,6 +68,8 @@ func NewValidator(chainName string) (Validator, error) {
 	case "bitcoingold":
 		types := getEnalbedTypes(chainName)
 		return bitcoingold.New(types)
+	case "aeternity":
+		return aeternity.New(), nil
 	default:
 		return nil, common.ErrUnsupportedChain
 	}
