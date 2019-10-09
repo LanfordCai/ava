@@ -13,8 +13,8 @@ func TestNewValidatorWithEnabledTypes(t *testing.T) {
 
 	v, err := NewValidator("Bitcoin")
 	assert.Nil(t, err)
-	result := v.ValidateAddress("1HX2swQNH9ezE8RagPPAaSBTcK3in9xWYF", false)
-	assert.Equal(t, true, result.IsValid)
+	isValid, _ := v.ValidateAddress("1HX2swQNH9ezE8RagPPAaSBTcK3in9xWYF", false)
+	assert.Equal(t, true, isValid)
 
 	_, err = NewValidator("Testchain")
 	assert.EqualError(t, common.ErrUnsupportedChain, err.Error())
@@ -25,9 +25,9 @@ func TestNewValidatorWithContractWhitelist(t *testing.T) {
 
 	v, err := NewValidator("EOS")
 	assert.Nil(t, err)
-	result := v.ValidateAddress("huobideposit", false)
-	assert.Equal(t, true, result.IsValid)
+	isValid, _ := v.ValidateAddress("huobideposit", false)
+	assert.Equal(t, true, isValid)
 
-	result = v.ValidateAddress("pxneosincome", false)
-	assert.Equal(t, true, result.IsValid)
+	isValid, _ = v.ValidateAddress("pxneosincome", false)
+	assert.Equal(t, true, isValid)
 }

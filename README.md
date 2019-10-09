@@ -46,10 +46,10 @@ func main() {
 
 	address := "19JeUHUvw23fwKeK1zZD4moKyxj1xn4Kxi"
 	isTestnet := false
-	result := validator.ValidateAddress(address, isTestnet)
+	isValid, msg :=validator.ValidateAddress(address, isTestnet)
 
-	fmt.Printf("Address is valid?: %t\n", result.IsValid)
-	fmt.Printf("Extra message: %s\n", result.Msg)
+	fmt.Printf("Address is valid?: %t\n", isValid)
+	fmt.Printf("Extra message: %s\n", msg)
 }
 
 ```

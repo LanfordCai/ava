@@ -1,7 +1,6 @@
 package neo
 
 import (
-	"github.com/LanfordCai/ava/internal/common"
 	"github.com/btcsuite/btcutil/base58"
 )
 
@@ -16,10 +15,10 @@ func New() *Validator {
 }
 
 // ValidateAddress - Check a Neo address is valid or not
-func (n *Validator) ValidateAddress(address string, isTestnet bool) common.ValidationResult {
+func (n *Validator) ValidateAddress(address string, isTestnet bool) (isValid bool, msg string) {
 	_, version, err := base58.CheckDecode(address)
 	if err != nil {
-		return common.NewValidationResult(false, "")
+		return false, ""
 	}
-	return common.NewValidationResult(version == addrVer, "")
+	return version == addrVer, ""
 }

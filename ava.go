@@ -25,7 +25,7 @@ import (
 
 // Validator - Address validator
 type Validator interface {
-	ValidateAddress(addr string, isTestnet bool) common.ValidationResult
+	ValidateAddress(addr string, isTestnet bool) (isValid bool, msg string)
 }
 
 // NewValidator - Create address validator according to given chain name

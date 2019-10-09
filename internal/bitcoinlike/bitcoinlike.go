@@ -31,7 +31,7 @@ type Validator struct {
 
 // ValidateAddress - Validate the given address and network type
 // SEE: https://en.bitcoin.it/wiki/List_of_address_prefixes
-func (b *Validator) ValidateAddress(address string, isTestnet bool) common.ValidationResult {
+func (b *Validator) ValidateAddress(address string, isTestnet bool) (isValid bool, msg string) {
 	var addrType string
 	switch {
 	case b.isP2PKH(address, isTestnet):
@@ -46,11 +46,10 @@ func (b *Validator) ValidateAddress(address string, isTestnet bool) common.Valid
 		addrType = "Unknown"
 	}
 
-	valid := false
 	if addrType != "Unknown" && utils.Contains(b.EnabledTypes, addrType) {
-		valid = true
+		isValid = true
 	}
-	return common.NewValidationResult(valid, addrType)
+	return isValid, addrType
 }
 
 // CheckTypes - Check address type has been supported or not

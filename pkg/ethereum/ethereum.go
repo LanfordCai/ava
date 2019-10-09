@@ -8,7 +8,6 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/LanfordCai/ava/internal/common"
 	"github.com/ethereum/go-ethereum/crypto/sha3"
 )
 
@@ -21,19 +20,19 @@ func New() *Validator {
 }
 
 // ValidateAddress - Check an Ethereum address is valid or not
-func (e *Validator) ValidateAddress(address string, isTestnet bool) common.ValidationResult {
+func (e *Validator) ValidateAddress(address string, isTestnet bool) (isValid bool, msg string) {
 	if isValidNonChecksumAddress(address) {
 		noPrefixAddr := address[2:]
 		if (strings.ToUpper(noPrefixAddr) == noPrefixAddr) || (strings.ToLower(noPrefixAddr) == noPrefixAddr) {
-			return common.NewValidationResult(true, "")
+			return true, ""
 		}
 		checksumAddress, err := e.ToChecksumAddress(address)
 		if err != nil || checksumAddress != address {
-			return common.NewValidationResult(false, "Invalid checksum")
+			return false, "Invalid checksum"
 		}
-		return common.NewValidationResult(true, "")
+		return true, ""
 	}
-	return common.NewValidationResult(false, "Invalid format")
+	return false, "Invalid format"
 }
 
 // ToChecksumAddress - Convert an Ethereum address to address with checksum

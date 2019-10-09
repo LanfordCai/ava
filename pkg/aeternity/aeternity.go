@@ -3,7 +3,6 @@ package aeternity
 import (
 	"strings"
 
-	"github.com/LanfordCai/ava/internal/common"
 	"github.com/btcsuite/btcutil/base58"
 )
 
@@ -18,16 +17,16 @@ func New() *Validator {
 }
 
 // ValidateAddress - Check an Aeternity address is valid or not
-func (v *Validator) ValidateAddress(address string, isTestnet bool) common.ValidationResult {
+func (v *Validator) ValidateAddress(address string, isTestnet bool) (isValid bool, msg string) {
 	if !strings.HasPrefix(address, aeternityAddrPrefix) {
-		return common.NewValidationResult(false, "")
+		return false, ""
 	}
 
 	encodedPubkey := strings.TrimPrefix(address, aeternityAddrPrefix)
 	decoded, _, err := base58.CheckDecode(encodedPubkey)
 	if err != nil || len(decoded) != 31 {
-		return common.NewValidationResult(false, "")
+		return false, ""
 	}
 
-	return common.NewValidationResult(true, "")
+	return true, ""
 }

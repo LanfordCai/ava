@@ -3,7 +3,6 @@ package eos
 import (
 	"regexp"
 
-	"github.com/LanfordCai/ava/internal/common"
 	"github.com/LanfordCai/ava/internal/utils"
 )
 
@@ -20,17 +19,22 @@ func New(baseURL string, contractWhitelist []string) *Validator {
 }
 
 // ValidateAddress ...
-func (e *Validator) ValidateAddress(addr string, isTestnet bool) common.ValidationResult {
-	if e.withValidFormat(addr) && e.isRegistered(addr) {
-		if e.isContract(addr) {
-			if utils.Contains(e.contractWhitelist, addr) {
-				return common.NewValidationResult(true, "whitelist contract")
-			}
-			return common.NewValidationResult(false, "contract which isn't in whitelist")
-		}
-		return common.NewValidationResult(true, "")
+func (e *Validator) ValidateAddress(addr string, isTestnet bool) (isValid bool, msg string) {
+	if !e.withValidFormat(addr) {
+		return false, "Invalid format"
 	}
-	return common.NewValidationResult(false, "unregistered or invalid format")
+
+	if !e.isRegistered(addr) {
+		return false, "Unregistered"
+	}
+
+	if e.isContract(addr) {
+		if utils.Contains(e.contractWhitelist, addr) {
+			return true, "Whitelist contract"
+		}
+		return false, "contract which isn't in whitelist"
+	}
+	return true, ""
 }
 
 func (e *Validator) isRegistered(addr string) bool {

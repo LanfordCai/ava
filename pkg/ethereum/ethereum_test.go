@@ -37,13 +37,13 @@ func TestValidateAddress(t *testing.T) {
 	}
 
 	for _, a := range validAddresses {
-		result := validator.ValidateAddress(a, false)
-		assert.Equal(t, true, result.IsValid)
+		isValid, _ := validator.ValidateAddress(a, false)
+		assert.Equal(t, true, isValid)
 	}
 
 	for _, a := range invalidAddresses {
-		result := validator.ValidateAddress(a, false)
-		assert.Equal(t, false, result.IsValid)
+		isValid, _ := validator.ValidateAddress(a, false)
+		assert.Equal(t, false, isValid)
 	}
 }
 
