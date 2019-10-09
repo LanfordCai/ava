@@ -5,8 +5,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/LanfordCai/ava/internal/common"
-	"github.com/LanfordCai/ava/internal/utils"
 	"github.com/LanfordCai/ava/pkg/aeternity"
 	"github.com/LanfordCai/ava/pkg/bitcoin"
 	"github.com/LanfordCai/ava/pkg/bitcoingold"
@@ -71,18 +69,30 @@ func NewValidator(chainName string) (Validator, error) {
 	case "aeternity":
 		return aeternity.New(), nil
 	default:
-		return nil, common.ErrUnsupportedChain
+		return nil, ErrUnsupportedChain
 	}
 }
 
 func getEnalbedTypes(chainName string) []string {
 	chainName = strings.ToUpper(chainName)
 	typesStr := os.Getenv(fmt.Sprintf("AVA_%s_ENABLED_ADDR_TYPES", chainName))
-	return utils.SplitWithComma(typesStr)
+	return splitWithComma(typesStr)
 }
 
 func getContractWhiteList(chainName string) []string {
 	chainName = strings.ToUpper(chainName)
 	whitelistStr := os.Getenv(fmt.Sprintf("AVA_%s_CONTRACT_WHITELIST", chainName))
-	return utils.SplitWithComma(whitelistStr)
+	return splitWithComma(whitelistStr)
+}
+
+func splitWithComma(content string) []string {
+	if len(content) == 0 {
+		return []string{}
+	}
+	elements := strings.Split(content, ",")
+	for i := 0; i < len(elements); i++ {
+		elements[i] = strings.Trim(elements[i], " ")
+	}
+
+	return elements
 }

@@ -4,7 +4,6 @@ import (
 	"os"
 	"testing"
 
-	"github.com/LanfordCai/ava/internal/common"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -17,7 +16,7 @@ func TestNewValidatorWithEnabledTypes(t *testing.T) {
 	assert.Equal(t, true, isValid)
 
 	_, err = NewValidator("Testchain")
-	assert.EqualError(t, common.ErrUnsupportedChain, err.Error())
+	assert.EqualError(t, ErrUnsupportedChain, err.Error())
 }
 
 func TestNewValidatorWithContractWhitelist(t *testing.T) {

@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/LanfordCai/ava/internal/common"
-	"github.com/LanfordCai/ava/internal/utils"
 	"github.com/btcsuite/btcutil/base58"
 	"github.com/btcsuite/btcutil/bech32"
 	"github.com/pkg/errors"
@@ -46,7 +44,7 @@ func (b *Validator) ValidateAddress(address string, isTestnet bool) (isValid boo
 		addrType = "Unknown"
 	}
 
-	if addrType != "Unknown" && utils.Contains(b.EnabledTypes, addrType) {
+	if addrType != "Unknown" && contains(b.EnabledTypes, addrType) {
 		isValid = true
 	}
 	return isValid, addrType
@@ -55,13 +53,13 @@ func (b *Validator) ValidateAddress(address string, isTestnet bool) (isValid boo
 // CheckTypes - Check address type has been supported or not
 func (b *Validator) CheckTypes(types []string) error {
 	if len(types) < 1 {
-		return common.ErrEmptyEnabledTypes
+		return ErrEmptyEnabledTypes
 	}
 
 	for _, t := range types {
-		if !utils.Contains(b.SupportedTypes, t) {
+		if !contains(b.SupportedTypes, t) {
 			errMsg := fmt.Sprintf("Supported types are: %+q", b.SupportedTypes)
-			return errors.Wrap(common.ErrUnsupportedTypes, errMsg)
+			return errors.Wrap(ErrUnsupportedTypes, errMsg)
 		}
 	}
 
@@ -133,4 +131,14 @@ func segwitAddrDecode(address string) (string, byte, []byte, error) {
 		return "", 255, []byte{}, err
 	}
 	return hrp, version, program, nil
+}
+
+func contains(sli []string, target string) bool {
+	for _, s := range sli {
+		if s == target {
+			return true
+		}
+	}
+
+	return false
 }

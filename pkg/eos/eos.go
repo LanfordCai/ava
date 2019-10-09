@@ -2,8 +2,6 @@ package eos
 
 import (
 	"regexp"
-
-	"github.com/LanfordCai/ava/internal/utils"
 )
 
 // Validator - EOS address validator
@@ -29,7 +27,7 @@ func (e *Validator) ValidateAddress(addr string, isTestnet bool) (isValid bool, 
 	}
 
 	if e.isContract(addr) {
-		if utils.Contains(e.contractWhitelist, addr) {
+		if contains(e.contractWhitelist, addr) {
 			return true, "Whitelist contract"
 		}
 		return false, "contract which isn't in whitelist"
@@ -60,4 +58,14 @@ func (e *Validator) withValidFormat(addr string) bool {
 		return false
 	}
 	return !matched
+}
+
+func contains(sli []string, target string) bool {
+	for _, s := range sli {
+		if s == target {
+			return true
+		}
+	}
+
+	return false
 }
