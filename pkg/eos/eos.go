@@ -1,6 +1,8 @@
 package eos
 
 import (
+	"log"
+	"os"
 	"regexp"
 )
 
@@ -8,6 +10,12 @@ import (
 type Validator struct {
 	client            *Client
 	contractWhitelist []string
+}
+
+func init() {
+	if os.Getenv("AVA_EOS_BASE_URL") == "" {
+		log.Panic("AVA_EOS_BASE_URL not found")
+	}
 }
 
 // New - Create a new EOS address validator
@@ -30,7 +38,7 @@ func (e *Validator) ValidateAddress(addr string, isTestnet bool) (isValid bool, 
 		if contains(e.contractWhitelist, addr) {
 			return true, "Whitelist contract"
 		}
-		return false, "contract which isn't in whitelist"
+		return false, "contract isn't in whitelist"
 	}
 	return true, ""
 }

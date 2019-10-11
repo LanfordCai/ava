@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 )
 
@@ -52,6 +53,7 @@ func (c *Client) call(baseAPI string, endpoint string, body interface{}, out int
 	}
 
 	url := fmt.Sprintf("%s/v1/%s/%s", c.BaseURL, baseAPI, endpoint)
+	log.Print(url)
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
 		return err
@@ -60,6 +62,7 @@ func (c *Client) call(baseAPI string, endpoint string, body interface{}, out int
 	defer resp.Body.Close()
 
 	respBody, err := ioutil.ReadAll(resp.Body)
+	log.Print(string(respBody))
 	if err != nil {
 		return err
 	}
