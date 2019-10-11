@@ -56,6 +56,7 @@ func (c *Client) call(baseAPI string, endpoint string, body interface{}, out int
 	log.Print(url)
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
+		log.Print(err)
 		return err
 	}
 
