@@ -6,6 +6,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+type network int
+
+const (
+	testnet network = iota + 1
+	mainnet
+)
+
 var cases = map[string][]string{
 	"mainnetP2PKH": []string{
 		"XpMfHazu1y8bgnP8csW73LWULGKgs4XH6U",
@@ -40,37 +47,37 @@ func TestValidateAddress(t *testing.T) {
 	for k, v := range cases {
 		switch k {
 		case "mainnetP2PKH":
-			validateAddresses(t, validator, v, false, true)
-			validateAddresses(t, validatorP2PKH, v, false, true)
-			validateAddresses(t, validatorP2SH, v, false, false)
-			validateAddresses(t, validator, v, true, false)
+			validateAddresses(t, validator, v, mainnet, true)
+			validateAddresses(t, validatorP2PKH, v, mainnet, true)
+			validateAddresses(t, validatorP2SH, v, mainnet, false)
+			validateAddresses(t, validator, v, testnet, false)
 		case "testnetP2PKH":
-			validateAddresses(t, validator, v, true, true)
-			validateAddresses(t, validatorP2PKH, v, true, true)
-			validateAddresses(t, validatorP2SH, v, true, false)
-			validateAddresses(t, validator, v, false, false)
+			validateAddresses(t, validator, v, testnet, true)
+			validateAddresses(t, validatorP2PKH, v, testnet, true)
+			validateAddresses(t, validatorP2SH, v, testnet, false)
+			validateAddresses(t, validator, v, mainnet, false)
 		case "mainnetP2SH":
-			validateAddresses(t, validator, v, false, true)
-			validateAddresses(t, validatorP2PKH, v, false, false)
-			validateAddresses(t, validatorP2SH, v, false, true)
-			validateAddresses(t, validator, v, true, false)
+			validateAddresses(t, validator, v, mainnet, true)
+			validateAddresses(t, validatorP2PKH, v, mainnet, false)
+			validateAddresses(t, validatorP2SH, v, mainnet, true)
+			validateAddresses(t, validator, v, testnet, false)
 		case "testnetP2SH":
-			validateAddresses(t, validator, v, true, true)
-			validateAddresses(t, validatorP2PKH, v, true, false)
-			validateAddresses(t, validatorP2SH, v, true, true)
-			validateAddresses(t, validator, v, false, false)
+			validateAddresses(t, validator, v, testnet, true)
+			validateAddresses(t, validatorP2PKH, v, testnet, false)
+			validateAddresses(t, validatorP2SH, v, testnet, true)
+			validateAddresses(t, validator, v, mainnet, false)
 		case "invalid":
-			validateAddresses(t, validator, v, true, false)
-			validateAddresses(t, validatorP2PKH, v, true, false)
-			validateAddresses(t, validatorP2SH, v, true, false)
-			validateAddresses(t, validator, v, false, false)
+			validateAddresses(t, validator, v, testnet, false)
+			validateAddresses(t, validatorP2PKH, v, testnet, false)
+			validateAddresses(t, validatorP2SH, v, testnet, false)
+			validateAddresses(t, validator, v, mainnet, false)
 		}
 	}
 }
 
-func validateAddresses(t *testing.T, validator *Validator, addresses []string, isTestnet bool, expect bool) {
+func validateAddresses(t *testing.T, validator *Validator, addresses []string, network network, expect bool) {
 	for _, a := range addresses {
-		isValid, _ := validator.ValidateAddress(a, isTestnet)
+		isValid, _ := validator.ValidateAddress(a, network == testnet)
 		assert.Equal(t, expect, isValid)
 	}
 }

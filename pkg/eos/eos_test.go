@@ -29,7 +29,7 @@ var cases = map[string][]string{
 
 func TestValidateAddress(t *testing.T) {
 	baseURL := os.Getenv("AVA_EOS_BASE_URL")
-	validator := New(baseURL, []string{})
+	validator := New(baseURL, nil)
 	validatorWithWhitelist := New(baseURL, []string{"huobideposit"})
 
 	for k, v := range cases {

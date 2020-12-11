@@ -87,7 +87,7 @@ func getContractWhiteList(chainName string) []string {
 
 func splitWithComma(content string) []string {
 	if len(content) == 0 {
-		return []string{}
+		return nil
 	}
 	elements := strings.Split(content, ",")
 	for i := 0; i < len(elements); i++ {

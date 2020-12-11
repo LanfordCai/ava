@@ -22,7 +22,7 @@ var cases = map[string][]string{
 		"qbgHcqxXYHVJZXHheGpHwLJsB5epDUtWxe",
 		"qUcwykb7UstkWB2cLtaGjY19bfUjoxLaZS",
 	},
-	"testnetP2SH": []string{},
+	"testnetP2SH": nil,
 	"invalid": []string{
 		"qdvMzSaMH17gtpJLu33ug1cTegC5rshhg21",
 		"1NT5SNNaoAXzvxRUvYGxiif93q7o9u4854",

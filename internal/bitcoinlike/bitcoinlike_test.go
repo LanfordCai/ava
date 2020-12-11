@@ -13,7 +13,7 @@ func TestNew(t *testing.T) {
 		SupportedTypes: []string{"P2PKH", "P2SH"},
 	}
 
-	msg := fmt.Sprintf("Supported types are: %+q", v.SupportedTypes)
+	msg := fmt.Sprintf("supported types are: %+q", v.SupportedTypes)
 	unsupportedErrMsg := errors.WithMessage(ErrUnsupportedTypes, msg).Error()
 
 	err := v.CheckTypes([]string{"P2PKH", "P2SH"})
@@ -22,6 +22,6 @@ func TestNew(t *testing.T) {
 	err = v.CheckTypes([]string{"P", "P2PKH"})
 	assert.EqualError(t, err, unsupportedErrMsg)
 
-	err = v.CheckTypes([]string{})
+	err = v.CheckTypes(nil)
 	assert.EqualError(t, err, ErrEmptyEnabledTypes.Error())
 }

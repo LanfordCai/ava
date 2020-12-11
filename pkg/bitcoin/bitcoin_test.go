@@ -28,6 +28,7 @@ var cases = map[string][]string{
 		"2NDhzMt2D9ZxXapbuq567WGeWP7NuDN81cg",
 	},
 	"invalid": []string{
+		"1YURbVuocZZZPi8LPU6GfAcKShYY7hLXbrG75v9zBXbS2zaqaHfSmGJvNEZwU3oETNZdPNxqLwR5C",
 		"1HX2swQNH9ezE8RagPPAaSBTcK3in9xWYF1",
 		"1NQhfItWRwU6zg5G58TfQibHyJEuo6ZYXw",
 		"0NT5SNNaoAXzvxRUvYGxiif93q7o9u4854",

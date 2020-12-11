@@ -58,7 +58,7 @@ func (b *Validator) CheckTypes(types []string) error {
 
 	for _, t := range types {
 		if !contains(b.SupportedTypes, t) {
-			errMsg := fmt.Sprintf("Supported types are: %+q", b.SupportedTypes)
+			errMsg := fmt.Sprintf("supported types are: %+q", b.SupportedTypes)
 			return errors.Wrap(ErrUnsupportedTypes, errMsg)
 		}
 	}
@@ -123,12 +123,12 @@ func (b *Validator) isP2WSH(address string, isTestnet bool) bool {
 func segwitAddrDecode(address string) (string, byte, []byte, error) {
 	hrp, data, err := bech32.Decode(address)
 	if err != nil || len(data) < 1 {
-		return "", 255, []byte{}, err
+		return "", 255, nil, err
 	}
 	version := data[0]
 	program, err := bech32.ConvertBits(data[1:], 5, 8, false)
 	if err != nil {
-		return "", 255, []byte{}, err
+		return "", 255, nil, err
 	}
 	return hrp, version, program, nil
 }
