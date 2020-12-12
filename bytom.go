@@ -3,7 +3,7 @@ package ava
 // Bytom ...
 type Bytom struct{}
 
-var _ ValidatorBitcoinLike = (*Qtum)(nil)
+var _ ValidatorBitcoinLike = (*Bytom)(nil)
 
 // ValidateAddress returns validate result of bytom address
 func (v *Bytom) ValidateAddress(addr string, network NetworkType) *Result {
