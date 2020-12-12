@@ -2,5 +2,8 @@ package ava
 
 import "errors"
 
-// ErrUnsupportedChain - the give chain is unsupported yet
-var ErrUnsupportedChain = errors.New("Given chain is unsupported yet")
+// List of Errors
+var (
+	ErrUnsupported     = errors.New("unsupported")
+	ErrInvalidAddrType = errors.New("invalid address type")
+)
