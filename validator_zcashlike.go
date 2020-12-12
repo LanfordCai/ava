@@ -12,7 +12,8 @@ type ValidatorZcashLike interface {
 	AddressVersion(addrType AddressType, network NetworkType) []byte
 }
 
-func zcashlikeNormalAddrType(v ValidatorZcashLike, addr string, network NetworkType) AddressType {
+// ZcashlikeNormalAddrType ...
+func ZcashlikeNormalAddrType(v ValidatorZcashLike, addr string, network NetworkType) AddressType {
 	decoded, version, err := base58.CheckDecode(addr)
 	if err != nil {
 		return Unknown

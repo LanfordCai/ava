@@ -7,7 +7,7 @@ var _ ValidatorZcashLike = (*Zcash)(nil)
 
 // ValidateAddress returns validate result of zcash address
 func (v *Zcash) ValidateAddress(addr string, network NetworkType) *Result {
-	if addrType := zcashlikeNormalAddrType(v, addr, network); addrType != Unknown {
+	if addrType := ZcashlikeNormalAddrType(v, addr, network); addrType != Unknown {
 		return &Result{IsValid: true, Type: addrType}
 	}
 
