@@ -2,7 +2,6 @@ package validator
 
 import (
 	"github.com/btcsuite/btcutil/base58"
-	"github.com/btcsuite/btcutil/bech32"
 )
 
 // BitcoinLike ...
@@ -36,11 +35,8 @@ func NormalAddrType(v BitcoinLike, addr string, network NetworkType) AddressType
 // SegwitAddrType ...
 func SegwitAddrType(v BitcoinLike, addr string, network NetworkType) AddressType {
 	hrp, version, program, err := segwitAddrDecode(addr)
-	if err != nil {
-		return Unknown
-	}
 
-	if version != 0 || hrp != v.AddressHrp(network) {
+	if err != nil || version != 0 || hrp != v.AddressHrp(network) {
 		return Unknown
 	}
 
@@ -53,17 +49,4 @@ func SegwitAddrType(v BitcoinLike, addr string, network NetworkType) AddressType
 	}
 
 	return Unknown
-}
-
-func segwitAddrDecode(address string) (string, byte, []byte, error) {
-	hrp, data, err := bech32.Decode(address)
-	if err != nil || len(data) < 1 {
-		return "", 255, nil, err
-	}
-	version := data[0]
-	program, err := bech32.ConvertBits(data[1:], 5, 8, false)
-	if err != nil {
-		return "", 255, nil, err
-	}
-	return hrp, version, program, nil
 }
