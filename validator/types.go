@@ -20,8 +20,8 @@ const (
 	P2SH               AddressType = "P2SH"
 	P2WPKH             AddressType = "P2WPKH"
 	P2WSH              AddressType = "P2WSH"
-	EthereumChecksumed AddressType = "EthereumChecksumed"
-	EthereumUnchecked  AddressType = "EthereumUnchecked"
+	HexWithChecksum    AddressType = "HexWithChecksum"
+	HexWithoutChecksum AddressType = "HexWithoutChecksum"
 )
 
 // Result is the validate result of address

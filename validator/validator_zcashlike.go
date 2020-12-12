@@ -15,11 +15,7 @@ type ZcashLike interface {
 // ZcashlikeNormalAddrType ...
 func ZcashlikeNormalAddrType(v ZcashLike, addr string, network NetworkType) AddressType {
 	decoded, version, err := base58.CheckDecode(addr)
-	if err != nil {
-		return Unknown
-	}
-
-	if len(decoded) != 21 {
+	if err != nil || len(decoded) != 21 {
 		return Unknown
 	}
 

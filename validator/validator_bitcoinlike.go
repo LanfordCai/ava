@@ -16,11 +16,7 @@ type BitcoinLike interface {
 // NormalAddrType ...
 func NormalAddrType(v BitcoinLike, addr string, network NetworkType) AddressType {
 	decoded, version, err := base58.CheckDecode(addr)
-	if err != nil {
-		return Unknown
-	}
-
-	if len(decoded) != 20 {
+	if err != nil || len(decoded) != 20 {
 		return Unknown
 	}
 

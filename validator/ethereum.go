@@ -20,7 +20,7 @@ func (e *Ethereum) ValidateAddress(addr string, network NetworkType) *Result {
 	}
 
 	if !e.withChecksum(addr) {
-		return &Result{true, EthereumUnchecked, ""}
+		return &Result{true, HexWithoutChecksum, ""}
 	}
 
 	checksumedAddr := e.toChecksumedAddress(addr)
@@ -28,7 +28,7 @@ func (e *Ethereum) ValidateAddress(addr string, network NetworkType) *Result {
 		return &Result{false, Unknown, ""}
 	}
 
-	return &Result{true, EthereumChecksumed, ""}
+	return &Result{true, HexWithChecksum, ""}
 }
 
 func (e *Ethereum) withChecksum(addr string) bool {

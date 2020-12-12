@@ -36,6 +36,9 @@ func main() {
 
 	fmt.Printf("Address is valid?: %t\n", result.IsValid)
 	fmt.Printf("Address type: %s\n", result.Type)
+
+	// Address is valid?: true
+	// Address type: P2PKH
 }
 ```
 
