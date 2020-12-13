@@ -11,9 +11,9 @@ func TestCosmosValidateAddress(t *testing.T) {
 	validator := &Cosmos{}
 
 	var mainnetCases = map[string]*Result{
-		"cosmos1rpsdl0wdk42jjf9sp57d3eflm8q8ektuz66at3": {true, P2WPKH, ""},
-		"cosmos1e4lhppa79t40eqdgl5her60p4zqtenyj839y8z": {true, P2WPKH, ""},
-		"cosmos14dhffucsgvdtyr457022l792mp6mk6pqr96f3k": {true, P2WPKH, ""},
+		"cosmos1rpsdl0wdk42jjf9sp57d3eflm8q8ektuz66at3": {true, Normal, ""},
+		"cosmos1e4lhppa79t40eqdgl5her60p4zqtenyj839y8z": {true, Normal, ""},
+		"cosmos14dhffucsgvdtyr457022l792mp6mk6pqr96f3k": {true, Normal, ""},
 	}
 
 	for addr, result := range mainnetCases {

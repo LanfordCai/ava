@@ -7,14 +7,14 @@ type Validator interface {
 	ValidateAddress(addr string, network NetworkType) *Result
 }
 
-// Segwit ...
-type Segwit interface {
+// SegwitAddress ...
+type SegwitAddress interface {
 	AddressHrp(network NetworkType) string
 	SegwitProgramLength(addrType AddressType) int
 }
 
 // SegwitAddrType ...
-func SegwitAddrType(v Segwit, addr string, network NetworkType) AddressType {
+func SegwitAddrType(v SegwitAddress, addr string, network NetworkType) AddressType {
 	hrp, version, program, err := segwitAddrDecode(addr)
 
 	if err != nil || version != 0 || hrp != v.AddressHrp(network) {
@@ -27,6 +27,27 @@ func SegwitAddrType(v Segwit, addr string, network NetworkType) AddressType {
 
 	if len(program) == v.SegwitProgramLength(P2WSH) {
 		return P2WSH
+	}
+
+	return Unknown
+}
+
+// Bech32Address ...
+type Bech32Address interface {
+	AddressHrp() string
+	Bech32ProgramLength() int
+}
+
+// Bech32AddrType ...
+func Bech32AddrType(v Bech32Address, addr string, network NetworkType) AddressType {
+	hrp, program, err := bech32AddrDecode(addr)
+
+	if err != nil || hrp != v.AddressHrp() {
+		return Unknown
+	}
+
+	if len(program) == v.Bech32ProgramLength() {
+		return Normal
 	}
 
 	return Unknown

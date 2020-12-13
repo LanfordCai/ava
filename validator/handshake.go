@@ -4,7 +4,7 @@ package validator
 type Handshake struct{}
 
 var _ Validator = (*Handshake)(nil)
-var _ Segwit = (*Handshake)(nil)
+var _ SegwitAddress = (*Handshake)(nil)
 
 // ValidateAddress returns validate result of handshake address
 func (v *Handshake) ValidateAddress(addr string, network NetworkType) *Result {
