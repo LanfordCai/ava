@@ -2,6 +2,8 @@ github.com/LanfordCai/rbase58 v0.1.0 h1:b2jehpFYJrWnxM52PJ+b6mvmcHFZ2u/2VNW/eVnt
 github.com/LanfordCai/rbase58 v0.1.0/go.mod h1:NIwL1B+ARWqU6rfSgz59x03KqSgH1p5hc+YUhEAFbZA=
 github.com/btcsuite/btcutil v0.0.0-20190425235716-9e5f4b9a998d h1:yJzD/yFppdVCf6ApMkVy8cUxV0XrxdP9rVf6D87/Mng=
 github.com/btcsuite/btcutil v0.0.0-20190425235716-9e5f4b9a998d/go.mod h1:+5NJ2+qvTyV9exUAL/rxXi3DcLg2Ts+ymUAY5y4NvMg=
+github.com/classzz/czzutil v0.0.0-20200714085554-7e5f543670fb h1:yVksZl/2NZpYWoHRueyIzOvKx3FV33ygP2ef11TrNaQ=
+github.com/classzz/czzutil v0.0.0-20200714085554-7e5f543670fb/go.mod h1:Yc0QLmdT2WaSUlRRWEk7fJJyS6N+ZgGh9+pH+DUULEk=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/ethereum/go-ethereum v1.8.20 h1:Sr6DLbdc7Fl2IMDC0sjF2wO1jTO5nALFC1SoQnyAQEk=

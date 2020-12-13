@@ -20,6 +20,8 @@ const (
 	P2SH               AddressType = "P2SH"
 	P2WPKH             AddressType = "P2WPKH"
 	P2WSH              AddressType = "P2WSH"
+	CashAddrP2PKH      AddressType = "CashAddrP2PKH"
+	CashAddrP2SH       AddressType = "CashAddrP2SH"
 	HexWithChecksum    AddressType = "HexWithChecksum"
 	HexWithoutChecksum AddressType = "HexWithoutChecksum"
 )
