@@ -29,13 +29,3 @@ func (v *Litecoin) AddressVersion(addrType AddressType, network NetworkType) byt
 	}
 	return 58
 }
-
-// AddressHrp returns hrps of litecoin according to the network
-func (v *Litecoin) AddressHrp(network NetworkType) string {
-	panic(ErrUnsupported.Error())
-}
-
-// SegwitProgramLength returns segwit program length of litecoin
-func (v *Litecoin) SegwitProgramLength(addrType AddressType) int {
-	panic(ErrUnsupported.Error())
-}

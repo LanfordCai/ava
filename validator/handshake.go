@@ -3,7 +3,8 @@ package validator
 // Handshake ...
 type Handshake struct{}
 
-var _ BitcoinLike = (*Handshake)(nil)
+var _ Validator = (*Handshake)(nil)
+var _ Segwit = (*Handshake)(nil)
 
 // ValidateAddress returns validate result of handshake address
 func (v *Handshake) ValidateAddress(addr string, network NetworkType) *Result {
@@ -11,12 +12,6 @@ func (v *Handshake) ValidateAddress(addr string, network NetworkType) *Result {
 		return &Result{IsValid: true, Type: addrType}
 	}
 	return &Result{IsValid: false, Type: Unknown}
-}
-
-// AddressVersion returns handshake address version according to the address type and
-// network type
-func (v *Handshake) AddressVersion(addrType AddressType, network NetworkType) byte {
-	panic(ErrUnsupported.Error())
 }
 
 // AddressHrp returns hrps of handshake according to the network

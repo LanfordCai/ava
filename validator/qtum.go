@@ -29,13 +29,3 @@ func (v *Qtum) AddressVersion(addrType AddressType, network NetworkType) byte {
 	}
 	return 110
 }
-
-// AddressHrp returns hrps of qtum according to the network
-func (v *Qtum) AddressHrp(network NetworkType) string {
-	panic(ErrUnsupported.Error())
-}
-
-// SegwitProgramLength returns segwit program length of qtum
-func (v *Qtum) SegwitProgramLength(addrType AddressType) int {
-	panic(ErrUnsupported.Error())
-}

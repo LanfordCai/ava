@@ -29,13 +29,3 @@ func (v *Dash) AddressVersion(addrType AddressType, network NetworkType) byte {
 	}
 	return 19
 }
-
-// AddressHrp returns hrps of dash according to the network
-func (v *Dash) AddressHrp(network NetworkType) string {
-	panic(ErrUnsupported.Error())
-}
-
-// SegwitProgramLength returns segwit program length of dash
-func (v *Dash) SegwitProgramLength(addrType AddressType) int {
-	panic(ErrUnsupported.Error())
-}

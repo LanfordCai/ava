@@ -29,13 +29,3 @@ func (v *BitcoinGold) AddressVersion(addrType AddressType, network NetworkType) 
 	}
 	return 196
 }
-
-// AddressHrp returns hrps of bitcoingold according to the network
-func (v *BitcoinGold) AddressHrp(network NetworkType) string {
-	panic(ErrUnsupported.Error())
-}
-
-// SegwitProgramLength returns segwit program length of bitcoingold
-func (v *BitcoinGold) SegwitProgramLength(addrType AddressType) int {
-	panic(ErrUnsupported.Error())
-}

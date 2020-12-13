@@ -29,13 +29,3 @@ func (v *Dogecoin) AddressVersion(addrType AddressType, network NetworkType) byt
 	}
 	return 196
 }
-
-// AddressHrp returns hrps of dogecoin according to the network
-func (v *Dogecoin) AddressHrp(network NetworkType) string {
-	panic(ErrUnsupported.Error())
-}
-
-// SegwitProgramLength returns segwit program length of dogecoin
-func (v *Dogecoin) SegwitProgramLength(addrType AddressType) int {
-	panic(ErrUnsupported.Error())
-}

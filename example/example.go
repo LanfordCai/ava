@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/LanfordCai/ava/validator"
+	"ava/validator"
 )
 
 func main() {

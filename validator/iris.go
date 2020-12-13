@@ -3,7 +3,8 @@ package validator
 // Iris ...
 type Iris struct{}
 
-var _ BitcoinLike = (*Iris)(nil)
+var _ Validator = (*Iris)(nil)
+var _ Segwit = (*Iris)(nil)
 
 // ValidateAddress returns validate result of bytom address
 func (v *Iris) ValidateAddress(addr string, network NetworkType) *Result {
@@ -17,12 +18,6 @@ func (v *Iris) ValidateAddress(addr string, network NetworkType) *Result {
 	}
 
 	return &Result{false, Unknown, ""}
-}
-
-// AddressVersion returns bytom address version according to the address type and
-// network type
-func (v *Iris) AddressVersion(addrType AddressType, network NetworkType) byte {
-	panic(ErrUnsupported.Error())
 }
 
 // AddressHrp returns hrps of bytom according to the network

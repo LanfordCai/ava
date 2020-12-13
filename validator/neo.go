@@ -32,13 +32,3 @@ func (v *Neo) AddressVersion(addrType AddressType, network NetworkType) byte {
 	}
 	panic(ErrUnsupported.Error())
 }
-
-// AddressHrp returns hrps of neo according to the network
-func (v *Neo) AddressHrp(network NetworkType) string {
-	panic(ErrUnsupported.Error())
-}
-
-// SegwitProgramLength returns segwit program length of neo
-func (v *Neo) SegwitProgramLength(addrType AddressType) int {
-	panic(ErrUnsupported.Error())
-}

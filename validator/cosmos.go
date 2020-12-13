@@ -3,7 +3,8 @@ package validator
 // Cosmos ...
 type Cosmos struct{}
 
-var _ BitcoinLike = (*Cosmos)(nil)
+var _ Validator = (*Cosmos)(nil)
+var _ Segwit = (*Cosmos)(nil)
 
 // ValidateAddress returns validate result of bytom address
 func (v *Cosmos) ValidateAddress(addr string, network NetworkType) *Result {
@@ -17,12 +18,6 @@ func (v *Cosmos) ValidateAddress(addr string, network NetworkType) *Result {
 	}
 
 	return &Result{false, Unknown, ""}
-}
-
-// AddressVersion returns bytom address version according to the address type and
-// network type
-func (v *Cosmos) AddressVersion(addrType AddressType, network NetworkType) byte {
-	panic(ErrUnsupported.Error())
 }
 
 // AddressHrp returns hrps of bytom according to the network

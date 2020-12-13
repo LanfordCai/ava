@@ -31,13 +31,3 @@ func (v *Ucacoin) AddressVersion(addrType AddressType, network NetworkType) byte
 	}
 	panic(ErrUnsupported.Error())
 }
-
-// AddressHrp returns hrps of qtum according to the network
-func (v *Ucacoin) AddressHrp(network NetworkType) string {
-	panic(ErrUnsupported.Error())
-}
-
-// SegwitProgramLength returns segwit program length of qtum
-func (v *Ucacoin) SegwitProgramLength(addrType AddressType) int {
-	panic(ErrUnsupported.Error())
-}
