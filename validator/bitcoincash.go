@@ -6,8 +6,9 @@ import "ava/cashaddr"
 type BitcoinCash struct{}
 
 var _ BitcoinLike = (*BitcoinCash)(nil)
+var _ CashAddress = (*BitcoinCash)(nil)
 
-// ValidateAddress returns validate result of bitcoin address
+// ValidateAddress returns validate result of bitcoincash address
 func (v *BitcoinCash) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := NormalAddrType(v, addr, network); addrType != Unknown {
 		return &Result{true, addrType, ""}
@@ -20,7 +21,7 @@ func (v *BitcoinCash) ValidateAddress(addr string, network NetworkType) *Result 
 	return &Result{false, Unknown, ""}
 }
 
-// AddressVersion returns bitcoin address version according to the address type and
+// AddressVersion returns bitcoincash address version according to the address type and
 // network type
 func (v *BitcoinCash) AddressVersion(addrType AddressType, network NetworkType) byte {
 	if network == Mainnet {

@@ -39,6 +39,10 @@ func ToLegacyAddr(addr string) (string, error) {
 	prefix := components[0]
 	data := components[1]
 
+	if len(data) < 8 {
+		return "", ErrInvalidCashAddr
+	}
+
 	decodedData := enc.decode(data)
 	packedAddrBytes := decodedData[:len(decodedData)-8]
 	checksumBytes := decodedData[len(decodedData)-8:]
@@ -73,6 +77,8 @@ func unpackAddress(packedAddr string, prefix string) (string, error) {
 		prefixByte = 111
 	} else if prefix == "bchtest" && packedAddr[0] == 'p' {
 		prefixByte = 196
+	} else if prefix == "classzz" && packedAddr[0] == 'c' {
+		prefixByte = 192
 	}
 
 	return base58.CheckEncode(data[1:], prefixByte), nil
@@ -125,6 +131,8 @@ func calcPrefix(version byte) string {
 		return "bitcoincash"
 	case version == 111 || version == 196:
 		return "bchtest"
+	case version == 192:
+		return "classzz"
 	default:
 		panic(ErrUnsupported.Error())
 	}
@@ -136,6 +144,8 @@ func calcAddrType(version byte) byte {
 		return 0
 	case version == 5 || version == 196:
 		return 1
+	case version == 192:
+		return 24
 	default:
 		panic(ErrUnsupported.Error())
 	}

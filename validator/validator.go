@@ -32,6 +32,11 @@ func SegwitAddrType(v Segwit, addr string, network NetworkType) AddressType {
 	return Unknown
 }
 
+// CashAddress ...
+type CashAddress interface {
+	CashAddrType(addr string, network NetworkType) AddressType
+}
+
 // Prefixer ...
 type Prefixer interface {
 	GetPrefix(network NetworkType) string
