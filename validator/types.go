@@ -24,6 +24,7 @@ const (
 	CashAddrP2SH       AddressType = "CashAddrP2SH"
 	HexWithChecksum    AddressType = "HexWithChecksum"
 	HexWithoutChecksum AddressType = "HexWithoutChecksum"
+	CKBShortPayload    AddressType = "CKBShortPayload"
 )
 
 // Result is the validate result of address
