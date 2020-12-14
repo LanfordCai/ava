@@ -11,7 +11,7 @@ var _ Validator = (*Vsystems)(nil)
 
 const vsystemsAddrVersion = 5
 
-// ValidateAddress returns validate result of bitcoin address
+// ValidateAddress returns validate result of vsystems address
 func (v *Vsystems) ValidateAddress(addr string, network NetworkType) *Result {
 	encoder := base58check.BitcoinEncoder
 	encoder.ChecksumType = base58check.ChecksumBlake2bKeccak256

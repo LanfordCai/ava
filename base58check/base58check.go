@@ -43,6 +43,9 @@ func (e *Encoder) CheckEncode(data []byte) string {
 // CheckDecode ...
 func (e *Encoder) CheckDecode(str string) ([]byte, error) {
 	decoded := e.Decode(str)
+	if len(decoded) < e.ChecksumLen {
+		return nil, ErrInvalidInput
+	}
 	payload, err := e.validateChecksum(decoded)
 	if err != nil {
 		return nil, err
@@ -125,7 +128,7 @@ func (e *Encoder) Decode(b string) []byte {
 func (e *Encoder) verifyBase(str string) error {
 	for _, r := range str {
 		if !strings.Contains(e.enc.alphabet, string(r)) {
-			return ErrInvalidChar
+			return ErrInvalidInput
 		}
 	}
 	return nil
