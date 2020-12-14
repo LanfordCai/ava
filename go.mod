@@ -11,4 +11,5 @@ require (
 	github.com/minio/blake2b-simd v0.0.0-20160723061019-3f5f724cb5b1
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.2.2
+	golang.org/x/crypto v0.0.0-20201208171446-5f87f3452ae9
 )

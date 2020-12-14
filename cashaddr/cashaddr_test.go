@@ -53,15 +53,3 @@ func TestFromLegacyAddr(t *testing.T) {
 		assert.Equal(t, got, v)
 	}
 }
-
-// assert Converter.from_legacy("1BpEi6DfDAUFd7GtittLSdBeYJvcoaVggu") ==
-// "bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a"
-
-// assert Converter.from_legacy("mkAb1V4jYomRmhqpek5ZpyrcZVscZmEGEf") ==
-// "bchtest:qqe0az5j8gwk2uts9v2ywdv6sd32uut9hq9hc92pee"
-
-// assert Converter.from_legacy("3CWFddi6m4ndiGyKqzYvsFYagqDLPVMTzC") ==
-// "bitcoincash:ppm2qsznhks23z7629mms6s4cwef74vcwvn0h829pq"
-
-// assert Converter.from_legacy("39P8ZeWRGVLsH4smmsjLM1rybDmMLrUKRq") ==
-// "bitcoincash:pp297ralj957hvzyyvgmfe5vtz5c2szxqcehz8lc7f"

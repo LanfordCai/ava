@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"ava/crypto"
 	"bytes"
 	"encoding/hex"
 	"strings"
@@ -51,7 +52,7 @@ func (e *Ethereum) isValidUncheckedAddress(addr string) bool {
 
 func (e *Ethereum) toChecksumedAddress(addr string) string {
 	normalizedAddr := strings.ToLower(AddressWithoutPrefix(e, addr, Mainnet))
-	hash := hex.EncodeToString(keccak256Sum([]byte(normalizedAddr)))
+	hash := hex.EncodeToString(crypto.Keccak256([]byte(normalizedAddr)))
 	var checksumAddrBuf bytes.Buffer
 	for i, r := range normalizedAddr {
 		if hash[i] >= '8' {

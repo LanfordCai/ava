@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"ava/crypto"
 	"encoding/hex"
 )
 
@@ -17,7 +18,7 @@ func (s *Sia) ValidateAddress(addr string, network NetworkType) *Result {
 	}
 
 	unlockhash := unlockhashWithChecksum[:32]
-	checksum256 := blake2b256Sum(unlockhash)
+	checksum256 := crypto.Blake2b256(unlockhash)
 
 	var validChecksum [6]byte
 	copy(validChecksum[:], checksum256[:6])

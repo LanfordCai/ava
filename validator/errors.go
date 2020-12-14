@@ -4,6 +4,6 @@ import "errors"
 
 // List of Errors
 var (
-	ErrUnsupported     = errors.New("unsupported")
-	ErrInvalidAddrType = errors.New("invalid address type")
+	ErrUnsupported     = errors.New("[validator] unsupported")
+	ErrInvalidAddrType = errors.New("[validator] invalid address type")
 )
