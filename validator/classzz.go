@@ -42,7 +42,6 @@ func (v *Classzz) CashAddrType(addr string, network NetworkType) AddressType {
 		addr = fmt.Sprintf("%s:%s", "classzz", addr)
 	}
 
-	fmt.Println(addr)
 	legacyAddr, err := cashaddr.ToLegacyAddr(addr)
 	// if not cashaddr
 	if err != nil {

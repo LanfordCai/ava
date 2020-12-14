@@ -10,7 +10,7 @@ import (
 
 func TestCheckEncode_BitcoinAlphabet(t *testing.T) {
 
-	encoder := NewEncoder()
+	encoder := BitcoinEncoder
 
 	payloads := [][]byte{
 		[]byte(""),
@@ -84,7 +84,7 @@ func TestCheckEncode_BitcoinAlphabet(t *testing.T) {
 
 func TestCheckDecode_BitcoinAlphabet(t *testing.T) {
 
-	encoder := NewEncoder()
+	encoder := BitcoinEncoder
 
 	expected := [][]byte{
 		[]byte(""),
@@ -159,8 +159,7 @@ func TestCheckDecode_BitcoinAlphabet(t *testing.T) {
 
 func TestCheckEncode_RippleAlphabet(t *testing.T) {
 
-	encoder := NewEncoder()
-	encoder.enc = Encoding{alphabet: "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"}
+	encoder := RippleEncoder
 
 	payloads := [][]byte{
 		[]byte(""),
@@ -201,8 +200,7 @@ func TestCheckEncode_RippleAlphabet(t *testing.T) {
 
 func TestCheckDecode_RippleAlphabet(t *testing.T) {
 
-	encoder := NewEncoder()
-	encoder.enc = Encoding{alphabet: "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"}
+	encoder := RippleEncoder
 
 	expected := [][]byte{
 		[]byte(""),

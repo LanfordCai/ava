@@ -7,6 +7,20 @@ import (
 	"strings"
 )
 
+// BitcoinEncoder ...
+var BitcoinEncoder = &Encoder{
+	enc:          Encoding{alphabet: "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"},
+	ChecksumLen:  4,
+	ChecksumType: ChecksumDoubleSha256,
+}
+
+// RippleEncoder ...
+var RippleEncoder = &Encoder{
+	enc:          Encoding{alphabet: "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"},
+	ChecksumLen:  4,
+	ChecksumType: ChecksumDoubleSha256,
+}
+
 var bigRadix = big.NewInt(58)
 var bigZero = big.NewInt(0)
 
@@ -15,15 +29,6 @@ type Encoder struct {
 	enc          Encoding
 	ChecksumLen  int
 	ChecksumType ChecksumType
-}
-
-// NewEncoder ...
-func NewEncoder() *Encoder {
-	return &Encoder{
-		enc:          Encoding{alphabet: "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"},
-		ChecksumLen:  4,
-		ChecksumType: ChecksumDoubleSha256,
-	}
 }
 
 // CheckEncode ...

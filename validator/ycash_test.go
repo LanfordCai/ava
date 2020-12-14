@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// TODO: testnet casese
+// TODO: testnet cases
 func TestYcashValidateAddress(t *testing.T) {
 	validator := &Ycash{}
 
