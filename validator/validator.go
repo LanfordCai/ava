@@ -7,6 +7,15 @@ type Validator interface {
 	ValidateAddress(addr string, network NetworkType) *Result
 }
 
+// SS58 ...
+type SS58 interface {
+	Validator
+	AddressType() byte
+	AccountIdxLen() int
+	ChecksumLen() int
+	CalcChecksum(payload []byte) []byte
+}
+
 // SegwitAddress ...
 type SegwitAddress interface {
 	AddressHrp(network NetworkType) string

@@ -34,6 +34,13 @@ func Blake2b256(data []byte) []byte {
 	return h.Sum(nil)
 }
 
+// Blake2b512 ...
+func Blake2b512(data []byte) []byte {
+	h := blake2b.New512()
+	h.Write(data)
+	return h.Sum(nil)
+}
+
 // Keccak256 ...
 func Keccak256(data []byte) []byte {
 	h := sha3.NewKeccak256()
