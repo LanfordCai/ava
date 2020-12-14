@@ -25,6 +25,10 @@ const (
 	HexWithChecksum    AddressType = "HexWithChecksum"
 	HexWithoutChecksum AddressType = "HexWithoutChecksum"
 	CKBShortPayload    AddressType = "CKBShortPayload"
+	FilID              AddressType = "FilID"
+	FilActor           AddressType = "FilActor"
+	FilSecp256k1       AddressType = "FileSecp256k1"
+	FilBLS             AddressType = "FileBLS"
 )
 
 // Result is the validate result of address
