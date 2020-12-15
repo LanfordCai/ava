@@ -11,9 +11,9 @@ type Tezos struct{}
 var _ Validator = (*Tezos)(nil)
 
 var tezosPrefixes = [][]byte{
-	[]byte{6, 161, 159},
-	[]byte{6, 161, 161},
-	[]byte{6, 161, 164},
+	{6, 161, 159},
+	{6, 161, 161},
+	{6, 161, 164},
 }
 
 // ValidateAddress returns validate result of tezos address
