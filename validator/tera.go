@@ -11,7 +11,7 @@ var _ OnchainValidator = (*Tera)(nil)
 
 // ValidateAddress returns validate result of stellar address
 func (v *Tera) ValidateAddress(addr string, network NetworkType) *Result {
-	if isValid := v.IsAddressFormatValid(addr); !isValid {
+	if isValid := v.IsAddressFormatValid(addr, network); !isValid {
 		return &Result{Success, false, Unknown, ""}
 	}
 
@@ -28,7 +28,7 @@ func (v *Tera) ValidateAddress(addr string, network NetworkType) *Result {
 }
 
 // IsAddressFormatValid ...
-func (v *Tera) IsAddressFormatValid(addr string) bool {
+func (v *Tera) IsAddressFormatValid(addr string, network NetworkType) bool {
 	_, err := strconv.ParseUint(addr, 10, 32)
 	return err == nil
 }

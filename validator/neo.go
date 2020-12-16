@@ -4,13 +4,13 @@ import (
 	"github.com/btcsuite/btcutil/base58"
 )
 
-// Neo ...
-type Neo struct{}
+// NEO ...
+type NEO struct{}
 
-var _ BitcoinLike = (*Neo)(nil)
+var _ BitcoinLike = (*NEO)(nil)
 
-// ValidateAddress returns validate result of neo address
-func (v *Neo) ValidateAddress(addr string, network NetworkType) *Result {
+// ValidateAddress returns validate result of NEO address
+func (v *NEO) ValidateAddress(addr string, network NetworkType) *Result {
 	decoded, version, err := base58.CheckDecode(addr)
 	if err != nil || len(decoded) != 20 {
 		return &Result{Success, false, Unknown, ""}
@@ -24,9 +24,9 @@ func (v *Neo) ValidateAddress(addr string, network NetworkType) *Result {
 	return &Result{Success, false, Unknown, ""}
 }
 
-// AddressVersion returns neo address version according to the address type and
+// AddressVersion returns NEO address version according to the address type and
 // network type
-func (v *Neo) AddressVersion(addrType AddressType, network NetworkType) byte {
+func (v *NEO) AddressVersion(addrType AddressType, network NetworkType) byte {
 	if network == Mainnet && addrType == P2PKH {
 		return 23
 	}

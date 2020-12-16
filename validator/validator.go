@@ -85,10 +85,27 @@ func AddressWithoutPrefix(v Prefixer, addr string, network NetworkType) string {
 // OnchainValidator ...
 type OnchainValidator interface {
 	Validator
-	IsAddressFormatValid(addr string) bool
+	IsAddressFormatValid(addr string, network NetworkType) bool
 }
 
 // ContractChecker ...
 type ContractChecker interface {
 	IsContractDeployed(addr string) (bool, error)
+}
+
+// RosettaValidator ...
+type RosettaValidator interface {
+	OnchainValidator
+	NetworkIdentifier(network NetworkType) RosettaNetworkIdentifier
+}
+
+// RosettaNetworkIdentifier is the simplified network identifier of Rosetta
+type RosettaNetworkIdentifier struct {
+	Blockchain string `json:"blockchain"`
+	Network    string `json:"network"`
+}
+
+// RosettaAccountIdentifier is the simplified account identifier of Rosetta
+type RosettaAccountIdentifier struct {
+	Address string `json:"address"`
 }

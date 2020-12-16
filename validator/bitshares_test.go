@@ -16,7 +16,7 @@ func TestBitsharesIsAddressFormatValid(t *testing.T) {
 	}
 
 	for _, addr := range validCases {
-		assert.True(t, validator.IsAddressFormatValid(addr), addr)
+		assert.True(t, validator.IsAddressFormatValid(addr, Mainnet), addr)
 	}
 
 	var invalidCases = []string{
@@ -28,6 +28,6 @@ func TestBitsharesIsAddressFormatValid(t *testing.T) {
 	}
 
 	for _, addr := range invalidCases {
-		assert.False(t, validator.IsAddressFormatValid(addr), addr)
+		assert.False(t, validator.IsAddressFormatValid(addr, Mainnet), addr)
 	}
 }

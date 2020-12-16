@@ -21,7 +21,7 @@ const stellarAddrLen = 56
 
 // ValidateAddress returns validate result of stellar address
 func (v *Stellar) ValidateAddress(addr string, network NetworkType) *Result {
-	if isValid := v.IsAddressFormatValid(addr); !isValid {
+	if isValid := v.IsAddressFormatValid(addr, network); !isValid {
 		return &Result{Success, false, Unknown, ""}
 	}
 
@@ -38,7 +38,7 @@ func (v *Stellar) ValidateAddress(addr string, network NetworkType) *Result {
 }
 
 // IsAddressFormatValid ...
-func (v *Stellar) IsAddressFormatValid(addr string) bool {
+func (v *Stellar) IsAddressFormatValid(addr string, network NetworkType) bool {
 	if len(addr) != stellarAddrLen {
 		return false
 	}

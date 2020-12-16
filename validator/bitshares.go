@@ -11,7 +11,7 @@ var _ OnchainValidator = (*Bitshares)(nil)
 
 // ValidateAddress ...
 func (e *Bitshares) ValidateAddress(addr string, network NetworkType) *Result {
-	if isValid := e.IsAddressFormatValid(addr); !isValid {
+	if isValid := e.IsAddressFormatValid(addr, network); !isValid {
 		return &Result{Success, false, Unknown, ""}
 	}
 
@@ -28,7 +28,7 @@ func (e *Bitshares) ValidateAddress(addr string, network NetworkType) *Result {
 }
 
 // IsAddressFormatValid ...
-func (e *Bitshares) IsAddressFormatValid(addr string) bool {
+func (e *Bitshares) IsAddressFormatValid(addr string, network NetworkType) bool {
 	re := regexp.MustCompile(`\A[a-z0-9][a-z0-9.-]{1,30}\z`)
 	return re.MatchString(addr)
 }
