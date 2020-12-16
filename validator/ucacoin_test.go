@@ -11,10 +11,10 @@ func TestUcacoinValidateAddress(t *testing.T) {
 	validator := &Ucacoin{}
 
 	var mainnetCases = map[string]*Result{
-		"UaFYCsCHXtbW4EWmckYXP8BmGgezJrRdem": {true, P2PKH, ""},
-		"Uak5JfpmLyjJkGJP37eBWHVPQmYo9wLX7w": {true, P2PKH, ""},
-		"UbehDN7bgkJ8VgCsM96r2W2UpRoiHSQizY": {true, P2PKH, ""},
-		"UcAkUrswRtP6vwZQf2F26k68dyHqWG7Sw5": {true, P2PKH, ""},
+		"UaFYCsCHXtbW4EWmckYXP8BmGgezJrRdem": {Success, true, P2PKH, ""},
+		"Uak5JfpmLyjJkGJP37eBWHVPQmYo9wLX7w": {Success, true, P2PKH, ""},
+		"UbehDN7bgkJ8VgCsM96r2W2UpRoiHSQizY": {Success, true, P2PKH, ""},
+		"UcAkUrswRtP6vwZQf2F26k68dyHqWG7Sw5": {Success, true, P2PKH, ""},
 	}
 
 	for addr, result := range mainnetCases {
@@ -22,17 +22,17 @@ func TestUcacoinValidateAddress(t *testing.T) {
 	}
 
 	var invalidCases = map[string]*Result{
-		"UcDkUrswRtP6vwZQf2F26k68dyHqWG7Sw5":         {false, Unknown, ""},
-		"DFwtUPqF3ornMxgs6gt6A3Rpcuwizzsnee":         {false, Unknown, ""},
-		"1NQhfItWRwU6zg5G58TfQibHyJEuo6ZYXw":         {false, Unknown, ""},
-		"QN3WBNpL3ZVj5PwQhSTPYZdrR7QXiKttChN":        {false, Unknown, ""},
-		"UcehDN7bgkJ8VgCsM96r2W2UpRoiHSQizY ":        {false, Unknown, ""},
-		"GEzKoZ59mhmpMzjNBWNoYKvLhFLAdHuL6P":         {false, Unknown, ""},
-		"bakpp3d37tWm48UjCo7U6azYejndijaghz":         {false, Unknown, ""},
-		"aajt5HHvkLTT4qwhZA1z3zP2ib2tmFm56u":         {false, Unknown, ""},
-		"bb1qql2qamp2az7h5ejnjyuxt4294watgcmrd76n8c": {false, Unknown, ""},
-		"abcde": {false, Unknown, ""},
-		"":      {false, Unknown, ""},
+		"UcDkUrswRtP6vwZQf2F26k68dyHqWG7Sw5":         {Success, false, Unknown, ""},
+		"DFwtUPqF3ornMxgs6gt6A3Rpcuwizzsnee":         {Success, false, Unknown, ""},
+		"1NQhfItWRwU6zg5G58TfQibHyJEuo6ZYXw":         {Success, false, Unknown, ""},
+		"QN3WBNpL3ZVj5PwQhSTPYZdrR7QXiKttChN":        {Success, false, Unknown, ""},
+		"UcehDN7bgkJ8VgCsM96r2W2UpRoiHSQizY ":        {Success, false, Unknown, ""},
+		"GEzKoZ59mhmpMzjNBWNoYKvLhFLAdHuL6P":         {Success, false, Unknown, ""},
+		"bakpp3d37tWm48UjCo7U6azYejndijaghz":         {Success, false, Unknown, ""},
+		"aajt5HHvkLTT4qwhZA1z3zP2ib2tmFm56u":         {Success, false, Unknown, ""},
+		"bb1qql2qamp2az7h5ejnjyuxt4294watgcmrd76n8c": {Success, false, Unknown, ""},
+		"abcde": {Success, false, Unknown, ""},
+		"":      {Success, false, Unknown, ""},
 	}
 
 	for addr, result := range invalidCases {

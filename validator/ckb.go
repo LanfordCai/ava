@@ -18,22 +18,22 @@ const ckbMultisigHashType = 1
 func (v *CKB) ValidateAddress(addr string, network NetworkType) *Result {
 	hrp, data, err := bech32.Decode(addr)
 	if hrp != v.AddressHrp(network) || err != nil {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	program, err := bech32.ConvertBits(data, 5, 8, true)
 	if err != nil {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	addrType := program[0]
 	codeHashIdx := program[1]
 	if addrType == ckbShortPayloadFormatType &&
 		(codeHashIdx == ckbBlake2bCodeHashType || codeHashIdx == ckbMultisigHashType) {
-		return &Result{true, CKBShortPayload, ""}
+		return &Result{Success, true, CKBShortPayload, ""}
 	}
 
-	return &Result{false, Unknown, ""}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressHrp returns hrps of ckb according to the network

@@ -8,10 +8,10 @@ var _ BitcoinLike = (*Litecoin)(nil)
 // ValidateAddress returns validate result of litecoin address
 func (v *Litecoin) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := NormalAddrType(v, addr, network); addrType != Unknown {
-		return &Result{IsValid: true, Type: addrType}
+		return &Result{Success, true, addrType, ""}
 	}
 
-	return &Result{IsValid: false, Type: Unknown}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressVersion returns litecoin address version according to the address type and

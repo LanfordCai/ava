@@ -15,10 +15,10 @@ var _ CashAddress = (*Classzz)(nil)
 // ValidateAddress returns validate result of classzz address
 func (v *Classzz) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := v.CashAddrType(addr, network); addrType != Unknown {
-		return &Result{true, addrType, ""}
+		return &Result{Success, true, addrType, ""}
 	}
 
-	return &Result{false, Unknown, ""}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressVersion returns classzz address version according to the address type and

@@ -9,10 +9,10 @@ var _ Bech32Address = (*Iris)(nil)
 // ValidateAddress returns validate result of iris address
 func (v *Iris) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := Bech32AddrType(v, addr, network); addrType != Unknown {
-		return &Result{true, Normal, ""}
+		return &Result{Success, true, Normal, ""}
 	}
 
-	return &Result{false, Unknown, ""}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressHrp returns hrp of iris according to the network

@@ -8,10 +8,10 @@ var _ ZcashLike = (*Ycash)(nil)
 // ValidateAddress returns validate result of ycash address
 func (v *Ycash) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := ZcashlikeNormalAddrType(v, addr, network); addrType != Unknown {
-		return &Result{IsValid: true, Type: addrType}
+		return &Result{Success, true, addrType, ""}
 	}
 
-	return &Result{IsValid: false, Type: Unknown}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressVersion returns ycash address version according to the address type and

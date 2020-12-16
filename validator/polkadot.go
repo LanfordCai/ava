@@ -18,11 +18,11 @@ func (v *Polkadot) ValidateAddress(addr string, network NetworkType) *Result {
 	dataLen := len(decoded)
 	// 1 byte type + 3 bytes address format
 	if dataLen < 4 {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 	ss58AddrType := decoded[0]
 	if ss58AddrType != v.AddressType() {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	checksum := decoded[dataLen-v.ChecksumLen():]
@@ -30,9 +30,9 @@ func (v *Polkadot) ValidateAddress(addr string, network NetworkType) *Result {
 
 	expectedChecksum := v.CalcChecksum(payload)
 	if bytes.Compare(checksum, expectedChecksum) == 0 {
-		return &Result{true, Normal, ""}
+		return &Result{Success, true, Normal, ""}
 	}
-	return &Result{false, Unknown, ""}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressType ...

@@ -1,7 +1,7 @@
 package validator
 
 import (
-	"github.com/LanfordCai/rbase58"
+	"ava/base58check"
 )
 
 // Ripple - Ripple address validator
@@ -11,9 +11,9 @@ var _ Validator = (*Ripple)(nil)
 
 // ValidateAddress - Check a Ripple address is valid or not
 func (r *Ripple) ValidateAddress(addr string, network NetworkType) *Result {
-	decoded, version, err := rbase58.CheckDecode(addr)
-	if err != nil || len(decoded) != 20 || version != 0 {
-		return &Result{false, Unknown, ""}
+	decoded, err := base58check.RippleEncoder.CheckDecode(addr)
+	if err != nil || len(decoded) != 21 || decoded[0] != 0 {
+		return &Result{Success, false, Unknown, ""}
 	}
-	return &Result{true, Normal, ""}
+	return &Result{Success, true, Normal, ""}
 }

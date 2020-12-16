@@ -8,10 +8,10 @@ var _ BitcoinLike = (*Dash)(nil)
 // ValidateAddress returns validate result of dash address
 func (v *Dash) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := NormalAddrType(v, addr, network); addrType != Unknown {
-		return &Result{IsValid: true, Type: addrType}
+		return &Result{Success, true, addrType, ""}
 	}
 
-	return &Result{IsValid: false, Type: Unknown}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressVersion returns dash address version according to the address type and

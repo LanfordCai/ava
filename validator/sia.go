@@ -14,7 +14,7 @@ var _ Validator = (*Sia)(nil)
 func (s *Sia) ValidateAddress(addr string, network NetworkType) *Result {
 	unlockhashWithChecksum, err := hex.DecodeString(addr)
 	if err != nil || len(unlockhashWithChecksum) != 38 {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	unlockhash := unlockhashWithChecksum[:32]
@@ -26,7 +26,7 @@ func (s *Sia) ValidateAddress(addr string, network NetworkType) *Result {
 	var checksum [6]byte
 	copy(checksum[:], unlockhashWithChecksum[32:])
 	if checksum == validChecksum {
-		return &Result{true, Normal, ""}
+		return &Result{Success, true, Normal, ""}
 	}
-	return &Result{false, Unknown, ""}
+	return &Result{Success, false, Unknown, ""}
 }

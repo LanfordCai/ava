@@ -81,3 +81,13 @@ func IsPrefixValid(v Prefixer, addr string, network NetworkType) bool {
 func AddressWithoutPrefix(v Prefixer, addr string, network NetworkType) string {
 	return strings.TrimPrefix(addr, v.GetPrefix(network))
 }
+
+// OnchainValidator ...
+type OnchainValidator interface {
+	Validator
+}
+
+// ContractChecker ...
+type ContractChecker interface {
+	IsContractDeployed(addr string) (bool, error)
+}

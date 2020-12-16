@@ -11,7 +11,7 @@ var _ Validator = (*Tron)(nil)
 func (r *Tron) ValidateAddress(addr string, network NetworkType) *Result {
 	decoded, version, err := base58.CheckDecode(addr)
 	if err != nil || len(decoded) != 20 || version != 65 {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
-	return &Result{true, Normal, ""}
+	return &Result{Success, true, Normal, ""}
 }

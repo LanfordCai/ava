@@ -11,17 +11,17 @@ var _ Prefixer = (*Filecoin)(nil)
 // ValidateAddress returns validate result of arweave address
 func (v *Filecoin) ValidateAddress(addr string, network NetworkType) *Result {
 	if len(addr) < 3 || len(addr) > 86 {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	filAddr, err := address.NewFromString(addr)
 	if err != nil {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	prefix := v.GetPrefix(network)
 	if string(addr[0]) != prefix {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	addrType := FilSecp256k1
@@ -35,10 +35,10 @@ func (v *Filecoin) ValidateAddress(addr string, network NetworkType) *Result {
 	case address.BLS:
 		addrType = FilBLS
 	default:
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
-	return &Result{true, addrType, ""}
+	return &Result{Success, true, addrType, ""}
 }
 
 // GetPrefix returns the prefix of filecoin address

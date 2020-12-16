@@ -9,10 +9,10 @@ var _ Bech32Address = (*Cosmos)(nil)
 // ValidateAddress returns validate result of cosmos address
 func (v *Cosmos) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := Bech32AddrType(v, addr, network); addrType != Unknown {
-		return &Result{true, Normal, ""}
+		return &Result{Success, true, Normal, ""}
 	}
 
-	return &Result{false, Unknown, ""}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressHrp returns hrp of cosmos according to the network

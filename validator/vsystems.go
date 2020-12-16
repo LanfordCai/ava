@@ -18,17 +18,17 @@ func (v *Vsystems) ValidateAddress(addr string, network NetworkType) *Result {
 
 	decoded, err := encoder.CheckDecode(addr)
 	if err != nil {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	version := decoded[0]
 	networkByte := decoded[1]
 
 	if version == vsystemsAddrVersion && networkByte == v.getNetworkByte(network) {
-		return &Result{true, Normal, ""}
+		return &Result{Success, true, Normal, ""}
 	}
 
-	return &Result{false, Unknown, ""}
+	return &Result{Success, false, Unknown, ""}
 }
 
 func (v *Vsystems) getNetworkByte(network NetworkType) byte {

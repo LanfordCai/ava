@@ -11,14 +11,14 @@ var _ CashAddress = (*BitcoinCash)(nil)
 // ValidateAddress returns validate result of bitcoincash address
 func (v *BitcoinCash) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := NormalAddrType(v, addr, network); addrType != Unknown {
-		return &Result{true, addrType, ""}
+		return &Result{Success, true, addrType, ""}
 	}
 
 	if addrType := v.CashAddrType(addr, network); addrType != Unknown {
-		return &Result{true, addrType, ""}
+		return &Result{Success, true, addrType, ""}
 	}
 
-	return &Result{false, Unknown, ""}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressVersion returns bitcoincash address version according to the address type and

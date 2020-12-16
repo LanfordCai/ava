@@ -11,10 +11,10 @@ func TestRippleValidateAddress(t *testing.T) {
 	validator := &Ripple{}
 
 	var validCases = map[string]*Result{
-		"r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV": {true, Normal, ""},
-		"rKLpjpCoXgLQQYQyj13zgay73rsgmzNH13": {true, Normal, ""},
-		"rPFLkxQk6xUGdGYEykqe7PR25Gr7mLHDc8": {true, Normal, ""},
-		"rLwh9iqbPZ52Lg7wBNrUqoAJdddr3hs1MA": {true, Normal, ""},
+		"r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV": {Success, true, Normal, ""},
+		"rKLpjpCoXgLQQYQyj13zgay73rsgmzNH13": {Success, true, Normal, ""},
+		"rPFLkxQk6xUGdGYEykqe7PR25Gr7mLHDc8": {Success, true, Normal, ""},
+		"rLwh9iqbPZ52Lg7wBNrUqoAJdddr3hs1MA": {Success, true, Normal, ""},
 	}
 
 	for addr, result := range validCases {
@@ -23,11 +23,11 @@ func TestRippleValidateAddress(t *testing.T) {
 	}
 
 	var invalidCases = map[string]*Result{
-		"rLwh9iqbPZ52Lg7wBNrUqoAJdddr3hs1M1 ": {false, Unknown, ""},
-		"1PFLkxQk6xUGdGYEykqe7PR25Gr7mLHDc8":  {false, Unknown, ""},
-		"rKLpjpCoXgLQQYQ1j13zgay73rsgmzNH13":  {false, Unknown, ""},
-		"abcde":                               {false, Unknown, ""},
-		"":                                    {false, Unknown, ""},
+		"rLwh9iqbPZ52Lg7wBNrUqoAJdddr3hs1M1 ": {Success, false, Unknown, ""},
+		"1PFLkxQk6xUGdGYEykqe7PR25Gr7mLHDc8":  {Success, false, Unknown, ""},
+		"rKLpjpCoXgLQQYQ1j13zgay73rsgmzNH13":  {Success, false, Unknown, ""},
+		"abcde":                               {Success, false, Unknown, ""},
+		"":                                    {Success, false, Unknown, ""},
 	}
 
 	for addr, result := range invalidCases {

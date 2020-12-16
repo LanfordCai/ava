@@ -21,15 +21,15 @@ var tezosPrefixes = [][]byte{
 func (v *Tezos) ValidateAddress(addr string, network NetworkType) *Result {
 	data, err := base58check.BitcoinEncoder.CheckDecode(addr)
 	if err != nil {
-		return &Result{IsValid: false, Type: Unknown}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	prefix := []byte{data[0], data[1], data[2]}
 	if contains(tezosPrefixes, prefix) {
-		return &Result{IsValid: true, Type: Normal}
+		return &Result{Success, true, Normal, ""}
 	}
 
-	return &Result{IsValid: false, Type: Unknown}
+	return &Result{Success, false, Unknown, ""}
 }
 
 func contains(s [][]byte, b []byte) bool {

@@ -17,19 +17,19 @@ var _ Prefixer = (*Ethereum)(nil)
 // ValidateAddress - Check an Ethereum address is valid or not
 func (e *Ethereum) ValidateAddress(addr string, network NetworkType) *Result {
 	if !e.isValidUncheckedAddress(addr) {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
 	if !e.withChecksum(addr) {
-		return &Result{true, HexWithoutChecksum, ""}
+		return &Result{Success, true, HexWithoutChecksum, ""}
 	}
 
 	checksumedAddr := e.toChecksumedAddress(addr)
 	if checksumedAddr != addr {
-		return &Result{false, Unknown, ""}
+		return &Result{Success, false, Unknown, ""}
 	}
 
-	return &Result{true, HexWithChecksum, ""}
+	return &Result{Success, true, HexWithChecksum, ""}
 }
 
 func (e *Ethereum) withChecksum(addr string) bool {

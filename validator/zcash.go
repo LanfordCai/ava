@@ -8,10 +8,10 @@ var _ ZcashLike = (*Zcash)(nil)
 // ValidateAddress returns validate result of zcash address
 func (v *Zcash) ValidateAddress(addr string, network NetworkType) *Result {
 	if addrType := ZcashlikeNormalAddrType(v, addr, network); addrType != Unknown {
-		return &Result{IsValid: true, Type: addrType}
+		return &Result{Success, true, addrType, ""}
 	}
 
-	return &Result{IsValid: false, Type: Unknown}
+	return &Result{Success, false, Unknown, ""}
 }
 
 // AddressVersion returns zcash address version according to the address type and

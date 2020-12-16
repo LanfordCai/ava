@@ -12,7 +12,7 @@ const (
 // AddressType ...
 type AddressType string
 
-// List AddressType
+// List of AddressType
 const (
 	Unknown            AddressType = "Unknown"
 	Normal             AddressType = "Normal"
@@ -31,8 +31,18 @@ const (
 	FilBLS             AddressType = "FileBLS"
 )
 
+// ValidateStatus ...
+type ValidateStatus int
+
+// List of ValidateStatus
+const (
+	Success ValidateStatus = iota
+	Failure
+)
+
 // Result is the validate result of address
 type Result struct {
+	Status  ValidateStatus
 	IsValid bool
 	Type    AddressType
 	Msg     string
