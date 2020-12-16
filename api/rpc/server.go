@@ -2,6 +2,7 @@ package rpc
 
 import (
 	"context"
+	"strings"
 
 	"github.com/LanfordCai/ava/api/utils"
 	"github.com/LanfordCai/ava/proto/addressvalidator"
@@ -25,7 +26,9 @@ func NewAddressValidatorServer() *grpc.Server {
 
 // ValidateAddress ...
 func (s *AddressValidator) ValidateAddress(ctx context.Context, in *pb.ValidateRequest) (*pb.ValidateResponse, error) {
-	v := utils.GetValidatorByChain(in.GetChain())
+	chain := strings.ToLower(in.GetChain())
+	addr := in.GetAddress()
+	v := utils.GetValidatorByChain(chain)
 	if v == nil {
 		return nil, ErrUnsupportedChain
 	}
@@ -35,25 +38,34 @@ func (s *AddressValidator) ValidateAddress(ctx context.Context, in *pb.ValidateR
 		network = validator.Testnet
 	}
 
-	r := v.ValidateAddress(in.GetAddress(), network)
+	r := v.ValidateAddress(addr, network)
 
 	isValid := r.IsValid
-	unsupportedTypes := utils.GetUnsupportedAddressTypes(in.GetChain())
-	if utils.Contains(unsupportedTypes, string(r.Type)) {
-		isValid = false
+	validateStatus := string(r.Status)
+	if isValid {
+		isValid = !utils.IsUnsupportedAddressType(chain, r.Type)
+	}
+
+	if isValid && utils.NeedCheckContractAddress(chain) && !utils.AddressInContractWhiteList(chain, addr) {
+		if c, ok := v.(validator.ContractChecker); ok {
+			contractDeployed, err := c.IsContractDeployed(addr)
+			if err != nil {
+				validateStatus = string(validator.Failure)
+				isValid = false
+			}
+
+			if contractDeployed {
+				isValid = false
+			}
+		}
 	}
 
 	resp := &pb.ValidateResponse{
 		IsValid: isValid,
 		Type:    string(r.Type),
 		Msg:     r.Msg,
-		Status:  string(r.Status),
+		Status:  validateStatus,
 	}
 
 	return resp, nil
-}
-
-// IsContractAddress ...
-func (s *AddressValidator) IsContractAddress(ctx context.Context, in *pb.ValidateRequest) (*pb.ContractCheckResponse, error) {
-	return nil, nil
 }
