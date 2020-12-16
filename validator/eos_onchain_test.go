@@ -18,11 +18,6 @@ func TestEOSValidateAddress(t *testing.T) {
 		"eosnationftw": {Success, true, Normal, ""},
 		"atticlabeosb": {Success, true, Normal, ""},
 		"helloeoscnbp": {Success, true, Normal, ""},
-		"eosasia11111": {Success, true, Normal, ""},
-		"zbeosbp11111": {Success, true, Normal, ""},
-		"eoshuobipool": {Success, true, Normal, ""},
-		"big.one":      {Success, true, Normal, ""},
-		"okcapitalbp1": {Success, true, Normal, ""},
 	}
 
 	for addr, result := range mainnetCases {

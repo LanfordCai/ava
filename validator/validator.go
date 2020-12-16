@@ -85,7 +85,7 @@ func AddressWithoutPrefix(v Prefixer, addr string, network NetworkType) string {
 // OnchainValidator ...
 type OnchainValidator interface {
 	Validator
-	IsAddrFormatValid(addr string) bool
+	IsAddressFormatValid(addr string) bool
 }
 
 // ContractChecker ...
