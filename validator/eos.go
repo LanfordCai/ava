@@ -14,7 +14,7 @@ var _ ContractChecker = (*EOS)(nil)
 
 // ValidateAddress ...
 func (e *EOS) ValidateAddress(addr string, network NetworkType) *Result {
-	if isValid := e.isAddrFormatValid(addr); !isValid {
+	if isValid := e.IsAddrFormatValid(addr); !isValid {
 		return &Result{Success, false, Unknown, ""}
 	}
 
@@ -30,8 +30,8 @@ func (e *EOS) ValidateAddress(addr string, network NetworkType) *Result {
 	return &Result{Success, true, addrType, ""}
 }
 
-// ValidateAddressFormat ...
-func (e *EOS) isAddrFormatValid(addr string) bool {
+// IsAddrFormatValid ...
+func (e *EOS) IsAddrFormatValid(addr string) bool {
 	re := regexp.MustCompile(`\A[.a-z1-5]{1,12}\z`)
 	return re.MatchString(addr)
 }
