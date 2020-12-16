@@ -42,7 +42,6 @@ func (c *EOSClient) GetABIVersion(addr string) (string, error) {
 		return "", err
 	}
 	defer resp.Body.Close()
-
 	if resp.StatusCode > 299 {
 		return "", nil
 	}
@@ -58,10 +57,12 @@ func (c *EOSClient) GetABIVersion(addr string) (string, error) {
 		return "", err
 	}
 
-	return r.Version, nil
+	return r.ABI.Version, nil
 }
 
 // EOSGetABIResp ...
 type EOSGetABIResp struct {
-	Version string `json:"version"`
+	ABI struct {
+		Version string `json:"version"`
+	} `json:"abi"`
 }
