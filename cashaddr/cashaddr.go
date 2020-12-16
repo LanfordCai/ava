@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/btcsuite/btcutil/base58"
-	"github.com/classzz/czzutil/bech32"
+	"github.com/btcsuite/btcutil/bech32"
 )
 
 var enc = newBase32Encoder("qpzry9x8gf2tvdw0s3jn54khce6mua7l")

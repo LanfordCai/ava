@@ -3,9 +3,9 @@ package crypto
 import (
 	"crypto/sha256"
 
-	"github.com/ethereum/go-ethereum/crypto/sha3"
-	"github.com/minio/blake2b-simd"
+	"golang.org/x/crypto/blake2b"
 	"golang.org/x/crypto/ripemd160"
+	"golang.org/x/crypto/sha3"
 )
 
 // Sha256 ...
@@ -29,21 +29,27 @@ func Ripemd160(data []byte) []byte {
 
 // Blake2b256 ...
 func Blake2b256(data []byte) []byte {
-	h := blake2b.New256()
+	h, err := blake2b.New256(nil)
+	if err != nil {
+		panic("blake2b-256 failed")
+	}
 	h.Write(data)
 	return h.Sum(nil)
 }
 
 // Blake2b512 ...
 func Blake2b512(data []byte) []byte {
-	h := blake2b.New512()
+	h, err := blake2b.New512(nil)
+	if err != nil {
+		panic("blake2b-512 failed")
+	}
 	h.Write(data)
 	return h.Sum(nil)
 }
 
 // Keccak256 ...
 func Keccak256(data []byte) []byte {
-	h := sha3.NewKeccak256()
+	h := sha3.NewLegacyKeccak256()
 	h.Write(data)
 	return h.Sum(nil)
 }
