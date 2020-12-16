@@ -1,9 +1,10 @@
 package validator
 
 import (
-	"ava/base58check"
-	"ava/crypto"
 	"bytes"
+
+	"github.com/LanfordCai/ava/base58check"
+	"github.com/LanfordCai/ava/crypto"
 )
 
 // ChainX ...

@@ -1,11 +1,12 @@
 package validator
 
 import (
-	"ava/crypto"
 	"bytes"
 	"encoding/hex"
 	"strings"
 	"unicode"
+
+	"github.com/LanfordCai/ava/crypto"
 )
 
 // Ethereum ..

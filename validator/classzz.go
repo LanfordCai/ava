@@ -1,9 +1,10 @@
 package validator
 
 import (
-	"ava/cashaddr"
 	"fmt"
 	"strings"
+
+	"github.com/LanfordCai/ava/cashaddr"
 )
 
 // Classzz ...

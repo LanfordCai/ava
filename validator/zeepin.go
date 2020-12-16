@@ -1,7 +1,7 @@
 package validator
 
 import (
-	"ava/base58check"
+	"github.com/LanfordCai/ava/base58check"
 )
 
 // Zeepin ...

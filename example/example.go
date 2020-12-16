@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"ava/validator"
+	"github.com/LanfordCai/ava/validator"
 )
 
 func validateBitcoinAddr() {

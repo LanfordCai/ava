@@ -1,8 +1,9 @@
 package validator
 
 import (
-	"ava/crypto"
 	"encoding/hex"
+
+	"github.com/LanfordCai/ava/crypto"
 )
 
 // Sia ...

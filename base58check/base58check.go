@@ -1,10 +1,11 @@
 package base58check
 
 import (
-	"ava/crypto"
 	"bytes"
 	"math/big"
 	"strings"
+
+	"github.com/LanfordCai/ava/crypto"
 )
 
 // BitcoinEncoder ...

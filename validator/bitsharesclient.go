@@ -1,7 +1,7 @@
 package validator
 
 import (
-	"ava/httpclient"
+	"github.com/LanfordCai/ava/httpclient"
 )
 
 // BitsharesClient ...

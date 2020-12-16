@@ -1,6 +1,6 @@
 package validator
 
-import "ava/cashaddr"
+import "github.com/LanfordCai/ava/cashaddr"
 
 // BitcoinCash ...
 type BitcoinCash struct{}

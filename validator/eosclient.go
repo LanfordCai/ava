@@ -1,10 +1,11 @@
 package validator
 
 import (
-	"ava/httpclient"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+
+	"github.com/LanfordCai/ava/httpclient"
 )
 
 // EOSClient ...

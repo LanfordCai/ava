@@ -1,8 +1,9 @@
 package validator
 
 import (
-	"ava/httpclient"
 	"fmt"
+
+	"github.com/LanfordCai/ava/httpclient"
 )
 
 // StellarClient ...

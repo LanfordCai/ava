@@ -32,12 +32,12 @@ const (
 )
 
 // ValidateStatus ...
-type ValidateStatus int
+type ValidateStatus string
 
 // List of ValidateStatus
 const (
-	Success ValidateStatus = iota
-	Failure
+	Success ValidateStatus = "Success"
+	Failure ValidateStatus = "Failure"
 )
 
 // Result is the validate result of address

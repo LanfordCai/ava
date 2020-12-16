@@ -1,8 +1,9 @@
 package validator
 
 import (
-	"ava/base58check"
 	"bytes"
+
+	"github.com/LanfordCai/ava/base58check"
 )
 
 // Tezos ...
