@@ -29,6 +29,6 @@ func (e *Bitshares) ValidateAddress(addr string, network NetworkType) *Result {
 
 // IsAddressFormatValid ...
 func (e *Bitshares) IsAddressFormatValid(addr string, network NetworkType) bool {
-	re := regexp.MustCompile(`\A[a-z0-9][a-z0-9.-]{1,30}\z`)
+	re := regexp.MustCompile(`\A[a-z0-9]{1}[a-z0-9.-]{1,30}\z`)
 	return re.MatchString(addr)
 }
