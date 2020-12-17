@@ -8,6 +8,21 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestDecode(t *testing.T) {
+
+	encoder := BitcoinEncoder
+
+	invalidCases := []string{
+		"1F75dae041293f43df7eeab162dbe925fc875b76d792904cce51343120a039d2e57",
+		"2SLgsEfKy_STAk8yak8e3B4iwmyBG3CNJKkykdVUuHaDtZt4G8RZidk2cCoG4dtQyYNZX1XQX8zoWz82mUrQG9mPbWU6fQt1VoY6tu2cWydfazaFUucaxiJjw23LXL9t8yKP",
+		"6aRhzqrfjURatgH5xm3/45ZbXU5i2wuyhwueNfpih4LB1ZA9UxLkZfF9DsirGc4Ch9tifdNxg2T1g",
+	}
+
+	for _, c := range invalidCases {
+		assert.Equal(t, "", string(encoder.Decode(c)))
+	}
+}
+
 func TestCheckEncode_BitcoinAlphabet(t *testing.T) {
 
 	encoder := BitcoinEncoder

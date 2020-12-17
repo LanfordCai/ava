@@ -168,6 +168,9 @@ type Encoding struct {
 
 func (e *Encoding) codeToNum() map[rune]byte {
 	result := make(map[rune]byte)
+	for i := 0; i < 255; i++ {
+		result[rune(i)] = 255
+	}
 	for i, r := range e.alphabet {
 		result[r] = byte(i)
 	}
