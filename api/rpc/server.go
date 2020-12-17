@@ -4,9 +4,9 @@ import (
 	"context"
 	"strings"
 
+	"github.com/LanfordCai/ava/api/rpc/addressvalidator"
+	pb "github.com/LanfordCai/ava/api/rpc/addressvalidator"
 	"github.com/LanfordCai/ava/api/utils"
-	"github.com/LanfordCai/ava/proto/addressvalidator"
-	pb "github.com/LanfordCai/ava/proto/addressvalidator"
 	"github.com/LanfordCai/ava/validator"
 	"google.golang.org/grpc"
 )

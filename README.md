@@ -6,7 +6,7 @@ Cryptocurrency Addresses Validator
 
 Install the package using
 ```go
-$ go get github.com/LanfordCai/ava
+$ go get github.com/LanfordCai/ava/validator
 ```
 
 ### Usage
