@@ -35,6 +35,7 @@ func Post(url string, reqbody interface{}) (*http.Response, error) {
 	}
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, bytes.NewBuffer(body))
+	req.Header.Set("Content-Type", "application/json")
 	if err != nil {
 		return nil, err
 	}
