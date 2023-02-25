@@ -7,6 +7,5 @@ require (
 	github.com/filecoin-project/go-address v0.0.5-0.20201103152444-f2023ef3f5bb
 	github.com/snksoft/crc v1.1.0
 	github.com/stretchr/testify v1.5.1
-	golang.org/x/crypto v0.0.0-20201208171446-5f87f3452ae9
-	golang.org/x/sys v0.0.0-20201214210602-f9fddec55a1e // indirect
+	golang.org/x/crypto v0.1.0
 )
